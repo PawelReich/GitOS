@@ -8,6 +8,6 @@ docs
 *.sym
 settings.json
 .DS_Store
-.idea
-cmake-build-debug
-scripts/serial.log
+serial.log
+build
+.cache
