@@ -7,8 +7,8 @@
 #include <kernel.h>
 #include <drivers/graphics/vbe/vbe_graphics.hpp>
 
-void GitBoot::init(uint32_t magic, [[maybe_unused]] void* info_ptr) {
-    
+void GitBoot::init(uint32_t magic, [[maybe_unused]] void* info_ptr)
+{
     if (magic != 1337)
         return;
 
@@ -39,12 +39,12 @@ void GitBoot::init(uint32_t magic, [[maybe_unused]] void* info_ptr) {
     m_base_address = heap_entry.base_address;
     m_len = heap_entry.length_in_bytes;
 
-    const VbeModeInfo* modeInfo =reinterpret_cast<VbeModeInfo *>(0x2000);
+    const VbeModeInfo* modeInfo = reinterpret_cast<VbeModeInfo*>(0x2000);
 
     auto* framebuffer = reinterpret_cast<uint8_t*>(modeInfo->framebuffer);
     if (framebuffer == nullptr)
         return;
-    ((VBEGraphics*) VBEGraphics::the())->setup(framebuffer, modeInfo->bpp, modeInfo->xRes, modeInfo->yRes);
+    ((VBEGraphics*)VBEGraphics::the())->setup(framebuffer, modeInfo->bpp, modeInfo->xRes, modeInfo->yRes);
     VBEGraphics::the()->clear_screen();
 }
 
@@ -60,10 +60,12 @@ const char* GitBoot::get_bootloader_name() const
     return bootloader_name;
 }
 
-uint64_t GitBoot::get_heap_base_address() const {
+uint64_t GitBoot::get_heap_base_address() const
+{
     return m_base_address;
 }
 
-uint64_t GitBoot::get_heap_size() const {
+uint64_t GitBoot::get_heap_size() const
+{
     return m_len;
 }

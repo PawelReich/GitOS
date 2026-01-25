@@ -1,9 +1,10 @@
-#include "drivers/graphics/graphics.hpp"
 #include "text_mode.hpp"
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
+#include "drivers/graphics/graphics.hpp"
 
-extern "C" {
+extern "C"
+{
 #include "common/string.h"
 #include "memory/memory.h"
 }
@@ -17,7 +18,7 @@ Graphics* TextModeGraphics::the()
 
 /**
  * @brief Creates memory entry
- * 
+ *
  * @param c Character
  * @param color Color
  * @return uint16_t Entry to put in video memory
@@ -29,7 +30,7 @@ uint16_t TextModeGraphics::make_char(const char c, const TEXT_MODE_COLOR color)
 
 /**
  * @brief Clears screen
- * 
+ *
  */
 void TextModeGraphics::clear_screen()
 {
@@ -37,10 +38,9 @@ void TextModeGraphics::clear_screen()
     current_x = current_y = 0;
 }
 
-
 /**
  * @brief Prints char to screen
- * 
+ *
  * @param c Character to print
  */
 
@@ -51,7 +51,7 @@ void TextModeGraphics::print_char(const char c)
 
 /**
  * @brief Prints char to screen with specified color
- * 
+ *
  * @param c Character to print
  * @param color Color
  */
@@ -66,7 +66,7 @@ void TextModeGraphics::print_char_color(const char c, const TEXT_MODE_COLOR colo
     {
         current_x = 0;
     }
-    
+
     if (current_x == TEXT_MODE_WIDTH)
     {
         current_x = 0;
@@ -88,7 +88,7 @@ void TextModeGraphics::print_char_color(const char c, const TEXT_MODE_COLOR colo
 
 /**
  * @brief Prints string to screen
- * 
+ *
  * @param str String to print
  */
 void TextModeGraphics::print_string(const char* str)
@@ -98,7 +98,7 @@ void TextModeGraphics::print_string(const char* str)
 
 /**
  * @brief Prints string to screen with specified color
- * 
+ *
  * @param str String to print
  * @param color Color
  */
@@ -112,7 +112,7 @@ void TextModeGraphics::print_string_color(const char* str, const TEXT_MODE_COLOR
 
 /**
  * @brief Sets new framebuffer color to print
- * 
+ *
  * @param color New color to be set
  */
 void TextModeGraphics::set_text_color(const TEXT_MODE_COLOR color)
@@ -122,7 +122,7 @@ void TextModeGraphics::set_text_color(const TEXT_MODE_COLOR color)
 
 /**
  * @brief Sets framebuffer cursor to specified values
- * 
+ *
  * @param x X to be set
  * @param y Y to be set
  */
@@ -134,12 +134,12 @@ void TextModeGraphics::set_cursor(const uint32_t x, const uint32_t y)
 
 /**
  * @brief Scrolls framebuffer
- * 
+ *
  * @param amount Amount of lines to scroll
  */
 void TextModeGraphics::scroll_screen(int amount)
 {
-    memcpy(video_mem, reinterpret_cast<char *>(video_mem) + 2 * TEXT_MODE_WIDTH * amount, 2 * TEXT_MODE_WIDTH * (TEXT_MODE_HEIGHT - amount));
+    memcpy(video_mem, reinterpret_cast<char*>(video_mem) + 2 * TEXT_MODE_WIDTH * amount, 2 * TEXT_MODE_WIDTH * (TEXT_MODE_HEIGHT - amount));
     memset(reinterpret_cast<char*>(video_mem) + 2 * TEXT_MODE_WIDTH * (TEXT_MODE_HEIGHT - amount), 0, 2 * TEXT_MODE_WIDTH * amount);
 }
 

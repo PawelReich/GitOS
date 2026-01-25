@@ -1,16 +1,16 @@
 #pragma once
 
 #include <stdint.h>
-#include "fs/file.h"
 #include "drivers/disk/disk.h"
 #include "drivers/disk/disk_streamer.h"
+#include "fs/file.h"
 
 #define DEBUG_FAT16 0
 
-#define FAT16_SIGNATURE 0x29
+#define FAT16_SIGNATURE      0x29
 #define FAT16_FAT_ENTRY_SIZE 0x02
-#define FAT16_BAD_SECTOR 0xFF7
-#define FAT16_UNUSED 0x00
+#define FAT16_BAD_SECTOR     0xFF7
+#define FAT16_UNUSED         0x00
 
 typedef unsigned int FAT_ITEM_TYPE;
 #define FAT_ITEM_TYPE_DIRECTORY 0
@@ -25,7 +25,7 @@ typedef unsigned int FAT_ITEM_TYPE;
 #define FAT_FILE_ARCHVED      0x20
 #define FAT_FILE_DEVICE       0x40
 #define FAT_FILE_RESERVED     0x80
-#define FAT_FILE_LONGNAME     (FAT_FILE_READONLY | FAT_FILE_HIDDEN | FAT_FILE_SYSTEM | FAT_FILE_VOLUME_LABEL) 
+#define FAT_FILE_LONGNAME     (FAT_FILE_READONLY | FAT_FILE_HIDDEN | FAT_FILE_SYSTEM | FAT_FILE_VOLUME_LABEL)
 
 struct fat16_header_primary
 {
@@ -91,12 +91,12 @@ struct fat_directory
 
 struct fat_item
 {
-    union 
+    union
     {
         struct fat_file* file;
         struct fat_directory* directory;
     };
-    
+
     FAT_ITEM_TYPE type;
 };
 
@@ -113,9 +113,9 @@ struct fat_private
     struct fat_header header;
     struct fat_directory root_directory;
 
-    //Used to stream data clusters
+    // Used to stream data clusters
     struct disk_stream* cluster_read_stream;
-    //Used to stream the file allocation table
+    // Used to stream the file allocation table
     struct disk_stream* fat_read_stream;
 
     // Used to situations where we stream the directory

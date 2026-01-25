@@ -1,17 +1,16 @@
 #include "fat16.h"
-#include "common/string.h"
-#include "common/status.h"
-#include "memory/memory.h"
-#include "memory/heap/kheap.h"
-#include "kernel.h"
 #include "common/assert.h"
+#include "common/status.h"
+#include "common/string.h"
+#include "kernel.h"
+#include "memory/heap/kheap.h"
+#include "memory/memory.h"
 
 /**
  * @brief Describes driver as filesystem struct for generic filesystem driver use
- * 
+ *
  */
-struct filesystem fat16_fs = 
-{
+struct filesystem fat16_fs = {
     .resolve = fat16_resolve,
     .open = fat16_open,
     .read = fat16_read,
@@ -23,8 +22,8 @@ struct filesystem fat16_fs =
 
 /**
  * @brief Prepares filesystem struct for generic filesystem driver use
- * 
- * @return struct filesystem* 
+ *
+ * @return struct filesystem*
  */
 struct filesystem* fat16_init_filesystem()
 {
@@ -34,8 +33,8 @@ struct filesystem* fat16_init_filesystem()
 
 /**
  * @brief Calculates absolute disk position of first file data cluster
- * 
- * @param file File 
+ *
+ * @param file File
  * @return uint32_t Absolute disk position of first data cluster
  */
 static uint32_t fat16_get_first_cluster(struct fat_file* file)
@@ -45,7 +44,7 @@ static uint32_t fat16_get_first_cluster(struct fat_file* file)
 
 /**
  * @brief Calculates FAT sector to disk sector
- * 
+ *
  * @param fs_private Private filesystem data
  * @param cluster FAT Cluster to calculate
  * @return int Disk sector
@@ -57,7 +56,7 @@ static int fat16_cluster_to_sector(struct fat_private* fs_private, int cluster)
 
 /**
  * @brief Calculates disk sector to absolute position
- * 
+ *
  * @param fs_private Private filesystem data
  * @param sector Sector to calculate
  * @return int Absolute disk position
@@ -69,7 +68,7 @@ static int fat16_sector_to_absolute(struct fat_private* fs_private, int sector)
 
 /**
  * @brief Returns FAT table sector position
- * 
+ *
  * @param fs_private Private filesystem data
  * @return uint32_t Disk sector
  */
@@ -80,7 +79,7 @@ static uint32_t fat16_get_first_fat_sector(struct fat_private* fs_private)
 
 /**
  * @brief Converts FAT file (directory) name to null-terminated string
- * 
+ *
  * @param out Output null-terminated character array
  * @param in Input FAT-coded character array
  * @param max_len Max length of string to convert
@@ -91,8 +90,8 @@ static void fat16_to_proper_string(char** out, const char* in, int max_len)
     while (*in != 0x00 && *in != 0x20 && c < max_len)
     {
         **out = *in;
-        *out +=1;
-        in +=1;
+        *out += 1;
+        in += 1;
         c++;
     }
 
@@ -102,7 +101,7 @@ static void fat16_to_proper_string(char** out, const char* in, int max_len)
 
 /**
  * @brief Convert FAT file (directory) 8.1 name to null-terminated string
- * 
+ *
  * @param file File
  * @param out Output null-terminated character array
  */
@@ -110,19 +109,19 @@ static void fat16_get_full_relative_filename(struct fat_file* file, char* out)
 {
     memset(out, 0x00, 11);
     char* out_tmp = out;
-    fat16_to_proper_string(&out_tmp, (const char*) file->filename, sizeof(file->filename));
+    fat16_to_proper_string(&out_tmp, (const char*)file->filename, sizeof(file->filename));
     if (file->ext[0] != 0x00 && file->ext[0] != 0x20)
     {
         *out_tmp = '.';
         out_tmp++;
-        fat16_to_proper_string(&out_tmp, (const char*) file->ext, sizeof(file->ext));
+        fat16_to_proper_string(&out_tmp, (const char*)file->ext, sizeof(file->ext));
     }
 }
 
 /**
  * @brief Counts total items for given directory
- * 
- * @param fs_private Private filesystem data 
+ *
+ * @param fs_private Private filesystem data
  * @param start_sector Sector position of directory
  * @return int Total amount of items
  */
@@ -138,13 +137,13 @@ static int fat16_get_total_items_for_directory(struct fat_private* fs_private, i
 
     while (1)
     {
-        if (diskstreamer_read(fs_private->directory_stream, &current_item, sizeof(current_item)) !=ALL_OK)
+        if (diskstreamer_read(fs_private->directory_stream, &current_item, sizeof(current_item)) != ALL_OK)
             return -EIO;
 
-        if (current_item.filename[0] == 0x00)  
+        if (current_item.filename[0] == 0x00)
             break;
-    
-        if (current_item.filename[0] == 0xE5) //Entry free
+
+        if (current_item.filename[0] == 0xE5)  // Entry free
             continue;
 
         char filename_buf[11];
@@ -160,7 +159,7 @@ static int fat16_get_total_items_for_directory(struct fat_private* fs_private, i
 
 /**
  * @brief Resolves root directory
- * 
+ *
  * @param fs_private Private filesystem data
  * @param directory Output directory struct
  * @return int Status
@@ -173,8 +172,8 @@ static int fat16_get_root_directory(struct fat_private* fs_private, struct fat_d
     int total_sectors = root_dir_size / primary_header->bytes_per_sector;
 
     if (root_dir_size % primary_header->bytes_per_sector)
-        total_sectors +=1;
-    
+        total_sectors += 1;
+
     int total_items = fat16_get_total_items_for_directory(fs_private, root_dir_sector_pos);
 
     if (total_items < 0)
@@ -200,7 +199,7 @@ static int fat16_get_root_directory(struct fat_private* fs_private, struct fat_d
 
 /**
  * @brief Prepares private filesystem data
- * 
+ *
  * @param disk Disk
  * @param fs_private Output private filesystem data
  * @return int Status
@@ -210,31 +209,34 @@ static int fat16_init_private(struct disk* disk, struct fat_private* fs_private)
     memset(fs_private, 0, sizeof(struct fat_private));
     fs_private->disk = disk;
     fs_private->cluster_read_stream = diskstreamer_new(disk->id);
-    fs_private->fat_read_stream     = diskstreamer_new(disk->id);
-    fs_private->directory_stream    = diskstreamer_new(disk->id);
+    fs_private->fat_read_stream = diskstreamer_new(disk->id);
+    fs_private->directory_stream = diskstreamer_new(disk->id);
 
     if (!fs_private->cluster_read_stream || !fs_private->fat_read_stream || !fs_private->directory_stream)
         return -EIO;
-    
+
     return ALL_OK;
 }
 
 /**
  * @brief Frees memory allocated by private filesystem data
- * 
+ *
  * @param fs_private Private filesystem data
  */
 static void fat16_free_private(struct fat_private* fs_private)
 {
-    if (fs_private->cluster_read_stream) diskstreamer_close(fs_private->cluster_read_stream);
-    if (fs_private->fat_read_stream)     diskstreamer_close(fs_private->fat_read_stream);
-    if (fs_private->directory_stream)    diskstreamer_close(fs_private->directory_stream);
+    if (fs_private->cluster_read_stream)
+        diskstreamer_close(fs_private->cluster_read_stream);
+    if (fs_private->fat_read_stream)
+        diskstreamer_close(fs_private->fat_read_stream);
+    if (fs_private->directory_stream)
+        diskstreamer_close(fs_private->directory_stream);
     kfree(fs_private);
 }
 
 /**
  * @brief Frees memory allocated by directory struct
- * 
+ *
  * @param directory Directory
  */
 static void fat16_free_directory(struct fat_directory* directory)
@@ -247,7 +249,7 @@ static void fat16_free_directory(struct fat_directory* directory)
 
 /**
  * @brief Frees memory allocated by item struct
- * 
+ *
  * @param item Item
  */
 static void fat16_free_fat_item(struct fat_item* item)
@@ -264,7 +266,7 @@ static void fat16_free_fat_item(struct fat_item* item)
 
 /**
  * @brief Frees memory allocated by internal file descriptor struct
- * 
+ *
  * @param desc File descriptor
  */
 static void fat16_free_file_descriptor(struct fat_file_descriptor* desc)
@@ -275,7 +277,7 @@ static void fat16_free_file_descriptor(struct fat_file_descriptor* desc)
 
 /**
  * @brief Clones file item struct
- * 
+ *
  * @param item Item to clone
  * @return struct fat_file* Pointer to cloned struct
  */
@@ -293,7 +295,7 @@ static struct fat_file* fat16_clone_directory_item(struct fat_file* item)
 
 /**
  * @brief Resolves next cluster of file
- * 
+ *
  * @param disk Disk
  * @param fs_private Private filesystem data
  * @param cluster Previous file cluster
@@ -318,14 +320,14 @@ static int fat16_get_next_fat_entry(struct fat_private* fs_private, int cluster)
 
     res = result;
 
-    out:
+out:
     return res;
 }
 
 /**
  * @brief Resolves n-th data cluster from FAT for given starting FAT cluster
- * 
- * @param fs_private Private filesystem data 
+ *
+ * @param fs_private Private filesystem data
  * @param fat_desc File descriptor
  * @param starting_cluster First data cluster
  * @param offset Data offset in bytes
@@ -345,23 +347,28 @@ static int fat16_get_nth_cluster_from_fat(struct fat_private* fs_private, struct
     int cluster_to_use = starting_cluster;
     int current_pos = 0;
 
-    if (fat_desc && fat_desc->cached_cluster != 0) {
+    if (fat_desc && fat_desc->cached_cluster != 0)
+    {
         int cached_cluster = fat_desc->cached_offset_bytes / size_of_cluster_bytes;
 
         // Check if cached position
-        if (cached_cluster < target_cluster) {
+        if (cached_cluster < target_cluster)
+        {
             cluster_to_use = fat_desc->cached_cluster;
             current_pos = cached_cluster;
-        } else if (cached_cluster == target_cluster) {
+        }
+        else if (cached_cluster == target_cluster)
+        {
             return fat_desc->cached_cluster;
         }
     }
 
-    while (current_pos < target_cluster) {
+    while (current_pos < target_cluster)
+    {
         int entry = fat16_get_next_fat_entry(fs_private, cluster_to_use);
         if (entry == 0xFFF8 || entry == 0xFFFF)
         {
-            //Last entry in the file but size specified otherwise
+            // Last entry in the file but size specified otherwise
             result = -EIO;
             goto out;
         }
@@ -370,14 +377,14 @@ static int fat16_get_nth_cluster_from_fat(struct fat_private* fs_private, struct
             result = -EIO;
             goto out;
         }
-        
+
         // Reserved
         if (entry == 0xFF0 || entry == 0xFF6)
         {
             result = -EIO;
             goto out;
         }
- 
+
         if (entry == 0x00)
         {
             result = -EIO;
@@ -389,9 +396,10 @@ static int fat16_get_nth_cluster_from_fat(struct fat_private* fs_private, struct
 
     result = cluster_to_use;
 
-    out:
+out:
     // Update cache
-    if (!ISERR(result) && fat_desc) {
+    if (!ISERR(result) && fat_desc)
+    {
         fat_desc->cached_cluster = cluster_to_use;
         fat_desc->cached_offset_bytes = current_pos * size_of_cluster_bytes;
     }
@@ -400,7 +408,7 @@ static int fat16_get_nth_cluster_from_fat(struct fat_private* fs_private, struct
 
 /**
  * @brief Reads from disk stream to buffer
- * 
+ *
  * @param fs_private Private filesystem data
  * @param stream Disk stream to read from
  * @param cluster Cluster number
@@ -412,7 +420,8 @@ static int fat16_get_nth_cluster_from_fat(struct fat_private* fs_private, struct
 static int fat16_read_cluster(struct fat_private* fs_private, struct disk_stream* stream, struct fat_file_descriptor* fat_desc, int starting_cluster, int offset, int total, void* out)
 {
     int size_of_cluster_bytes = fs_private->header.primary.sectors_per_cluster * fs_private->header.primary.bytes_per_sector;
-    while (total > 0) {
+    while (total > 0)
+    {
         int cluster_to_use = fat16_get_nth_cluster_from_fat(fs_private, fat_desc, starting_cluster, offset);
         assert(cluster_to_use > 0);
         int offset_from_cluster = offset % size_of_cluster_bytes;
@@ -421,9 +430,9 @@ static int fat16_read_cluster(struct fat_private* fs_private, struct disk_stream
         int starting_pos = fat16_sector_to_absolute(fs_private, starting_sector) + offset_from_cluster;
         int total_to_read = total > size_of_cluster_bytes ? size_of_cluster_bytes : total;
 
-    #if DEBUG_FAT16
+#if DEBUG_FAT16
         kdebug("Reading %d bytes from starting cluster %d, target cluster %d (sector %d), offset from cluster: %d, total: %d, total_to_read: %d", total, cluster, cluster_to_use, starting_sector, offset_from_cluster, total, total_to_read);
-    #endif
+#endif
         int result = diskstreamer_seek(stream, starting_pos);
         assert(result == ALL_OK);
 
@@ -440,10 +449,10 @@ static int fat16_read_cluster(struct fat_private* fs_private, struct disk_stream
 
 /**
  * @brief Reads directory to internal directory struct
- * 
+ *
  * @param fs_private Private filesystem data
  * @param item Item to read
- * @return struct fat_directory* 
+ * @return struct fat_directory*
  */
 static struct fat_directory* fat16_load_fat_directory(struct fat_private* fs_private, struct fat_file* item)
 {
@@ -455,7 +464,7 @@ static struct fat_directory* fat16_load_fat_directory(struct fat_private* fs_pri
         result = -EIO;
         goto out;
     }
-    
+
     directory = kzalloc(sizeof(struct fat_directory));
     if (!directory)
     {
@@ -465,7 +474,7 @@ static struct fat_directory* fat16_load_fat_directory(struct fat_private* fs_pri
 
     int cluster = fat16_get_first_cluster(item);
     int cluster_sector = fat16_cluster_to_sector(fs_private, cluster);
-    
+
     int total_items = fat16_get_total_items_for_directory(fs_private, cluster_sector);
     directory->total = total_items;
 
@@ -484,7 +493,7 @@ static struct fat_directory* fat16_load_fat_directory(struct fat_private* fs_pri
         goto out;
     }
 
-    out:
+out:
     if (directory)
         if (result != ALL_OK)
         {
@@ -497,7 +506,7 @@ static struct fat_directory* fat16_load_fat_directory(struct fat_private* fs_pri
 
 /**
  * @brief Allocates new item struct for given item struct
- * 
+ *
  * @param fs_private Private filesystem data
  * @param item Item to generate struct for
  * @return struct fat_item* Pointer to allocated struct
@@ -524,7 +533,7 @@ static struct fat_item* fat16_new_fat_item_for_directory_item(struct fat_private
 
 /**
  * @brief Finds item in directory
- * 
+ *
  * @param fs_private Private filesystem data
  * @param directory Directory
  * @param name File name to find
@@ -535,20 +544,20 @@ static struct fat_item* fat16_find_item_in_directory(struct fat_private* fs_priv
     struct fat_item* f_item = 0;
     char tmp_filename[11];
     for (int i = 0; i < directory->total; i++)
-    { 
+    {
         fat16_get_full_relative_filename(&directory->item[i], tmp_filename);
         if (istrncmp(tmp_filename, name, sizeof(tmp_filename)) == 0)
         {
             f_item = fat16_new_fat_item_for_directory_item(fs_private, &directory->item[i]);
-        } 
+        }
     }
     return f_item;
 }
 
 /**
  * @brief Generates directory struct
- * 
- * @param fs_private Private filesystem data 
+ *
+ * @param fs_private Private filesystem data
  * @param path Path to directory
  * @return struct fat_item* Pointer to generated struct
  */
@@ -571,8 +580,8 @@ static struct fat_item* fat16_get_directory_entry(struct fat_private* fs_private
             current_item = 0;
             break;
         }
-        struct fat_item* tmp_item = fat16_find_item_in_directory(fs_private, current_item->directory, next_part->part); // Go to next directory
-        fat16_free_fat_item(current_item); 
+        struct fat_item* tmp_item = fat16_find_item_in_directory(fs_private, current_item->directory, next_part->part);  // Go to next directory
+        fat16_free_fat_item(current_item);
         current_item = tmp_item;
         next_part = next_part->next;
     }
@@ -583,7 +592,7 @@ out:
 
 /**
  * @brief FAT16 filesystem resolver
- * 
+ *
  * @param disk Disk to resolve
  * @return int Status
  */
@@ -608,13 +617,15 @@ int fat16_resolve(struct disk* disk)
     }
 
     uint8_t mbr[512];
-    if (diskstreamer_read(stream, mbr, sizeof(mbr)) != ALL_OK) {
+    if (diskstreamer_read(stream, mbr, sizeof(mbr)) != ALL_OK)
+    {
         result = -EIO;
         goto out;
     }
 
     // Verify MBR signature
-    if (mbr[510] != 0x55 || mbr[511] != 0xAA) {
+    if (mbr[510] != 0x55 || mbr[511] != 0xAA)
+    {
         kdebug("Invalid MBR signature (disk %d)", disk->id);
         result = -EIO;
         goto out;
@@ -624,25 +635,29 @@ int fat16_resolve(struct disk* disk)
     struct partition_entry* partitions = (struct partition_entry*)(mbr + 0x1BE);
     uint32_t partition_offset = 0;
     uint32_t partition_number = -1;
-    for (uint32_t i = 0; i < 4; i++) {
-        if (partitions[i].type == 0x04 || partitions[i].type == 0x06 || partitions[i].type == 0x0E) {
+    for (uint32_t i = 0; i < 4; i++)
+    {
+        if (partitions[i].type == 0x04 || partitions[i].type == 0x06 || partitions[i].type == 0x0E)
+        {
             partition_number = i;
             partition_offset = partitions[i].starting_lba * disk->sector_size;
             break;
         }
     }
 
-    if (partition_offset == 0) {
+    if (partition_offset == 0)
+    {
         kdebug("No FAT16 partition found in MBR (disk %d)", disk->id);
     }
 
     fs_private->partition_offset = partition_offset;
 
-    if (diskstreamer_seek(stream, partition_offset) != ALL_OK) {
+    if (diskstreamer_seek(stream, partition_offset) != ALL_OK)
+    {
         result = -EIO;
         goto out;
     }
-    
+
     result = diskstreamer_read(stream, &fs_private->header, sizeof(fs_private->header));
     if (result != ALL_OK)
     {
@@ -666,7 +681,7 @@ int fat16_resolve(struct disk* disk)
         goto out;
     }
 
-    out:
+out:
     if (stream)
         diskstreamer_close(stream);
 
@@ -685,7 +700,7 @@ int fat16_resolve(struct disk* disk)
 
 /**
  * @brief FAT16 Implementation of fopen
- * 
+ *
  * @param private_fs Private filesystem data
  * @param path Path to file
  * @param mode Open mode (FILE_MODE_READ for readonly)
@@ -717,7 +732,7 @@ void* fat16_open(void* private_fs, struct path_part* path, FILE_MODE mode)
 
 /**
  * @brief FAT16 Implementation of fread
- * 
+ *
  * @param private_fs Private filesystem data
  * @param desc Internal file descriptor
  * @param size Size of block
@@ -766,8 +781,8 @@ int fat16_write(void* private_fs, void* desc, uint32_t size, uint32_t nmemb, cha
 
 /**
  * @brief FAT16 Implementation of fseek
- * 
- * @param desc Internal file descriptor 
+ *
+ * @param desc Internal file descriptor
  * @param offset Offset
  * @param seek_mode Seek mode (SEEK_SET for absolute, SEEK_CUR for relative)
  * @return int Status
@@ -784,7 +799,7 @@ int fat16_seek(void* desc, uint32_t offset, FILE_SEEK_MODE seek_mode)
         return -EINVARG;
 
     struct fat_file* item = fat_desc->file->file;
-    
+
     if (offset >= item->filesize)
         return -EINVARG;
 
@@ -797,23 +812,23 @@ int fat16_seek(void* desc, uint32_t offset, FILE_SEEK_MODE seek_mode)
         case SEEK_CUR:
             if (fat_desc->pos + offset > item->filesize)
                 return -EINVARG;
-            if ((int32_t) (fat_desc->pos + offset) < 0)
+            if ((int32_t)(fat_desc->pos + offset) < 0)
                 return -EINVARG;
             fat_desc->pos += offset;
             break;
         case SEEK_END:
-            if ((int32_t) (item->filesize - offset) < 0)
+            if ((int32_t)(item->filesize - offset) < 0)
                 return -EINVARG;
 
             fat_desc->pos = item->filesize - offset;
-            break; 
+            break;
     }
     return ALL_OK;
 }
 
 /**
  * @brief FAT16 Implementation of fstat
- * 
+ *
  * @param desc Internal file descriptor
  * @param stat Output fstat struct
  * @return int Status
@@ -829,28 +844,31 @@ int fat16_stat(void* desc, struct file_stat* stat)
     struct fat_item* desc_item = fat_desc->file;
     struct fat_file* file = desc_item->file;
 
-    if (desc_item->type == FAT_ITEM_TYPE_FILE) {
+    if (desc_item->type == FAT_ITEM_TYPE_FILE)
+    {
         stat->filesize = file->filesize;
         stat->flags = 0;
 
         if (file->attribute & FAT_FILE_READONLY)
             stat->flags |= FILE_STAT_READ_ONLY;
     }
-    else if (desc_item->type == FAT_ITEM_TYPE_DIRECTORY) {
+    else if (desc_item->type == FAT_ITEM_TYPE_DIRECTORY)
+    {
         stat->filesize = 0;
         stat->flags = FILE_STAT_FOLDER;
     }
-    else {
+    else
+    {
         assert_not_reached();
     }
 
     return ALL_OK;
-} 
+}
 
 /**
  * @brief FAT16 Implementation of fclose
- * 
- * @param desc Internal file descriptor 
+ *
+ * @param desc Internal file descriptor
  * @return int Status
  */
 int fat16_close(void* desc)

@@ -19,15 +19,15 @@ struct gdt_structured
     uint8_t type;
 };
 
-struct gdt_descriptor 
+struct gdt_descriptor
 {
     uint16_t size;
     uint32_t start_address;
 } __attribute__((packed));
 
-void gdt_load(struct gdt *gdt, unsigned int size);
-void gdt_read(struct gdt_descriptor *target);
-void gdt_structured_to_gdt(struct gdt *gdt, struct gdt_structured *structured_gdt, unsigned int total_entries);
+void gdt_load(struct gdt* gdt, unsigned int size);
+void gdt_read(struct gdt_descriptor* target);
+void gdt_structured_to_gdt(struct gdt* gdt, struct gdt_structured* structured_gdt, unsigned int total_entries);
 
 #define TOTAL_GDT_SEGMENTS 6
 

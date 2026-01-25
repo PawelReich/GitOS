@@ -1,18 +1,17 @@
 #pragma once
-#include <stddef.h>
 #include <stdarg.h>
+#include <stddef.h>
 
 size_t strlen(const char* str);
 size_t strnlen(const char* str, size_t max_len);
 char* strcpy(char* dest, const char* src);
 char* strncpy(char* dest, const char* src, int n);
-char* strrev(char *str);
+char* strrev(char* str);
 int strncmp(const char* str1, const char* str2, int n);
 int strcmp(const char* str1, const char* str2);
 int strnlen_terminator(const char* str, int max, char terminator);
 int istrncmp(const char* str1, const char* str2, int n);
 char tolower(char c);
-
 
 char* itoa(long num, char* str, int base);
 char* uitoa(unsigned long num, char* str, int base);

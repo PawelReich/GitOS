@@ -1,34 +1,34 @@
 #include "kernel.h"
 
-#include <bootloaders/gitboot/GitBoot.hpp>
-#include <drivers/ps2mouse/PS2Mouse.hpp>
-#include <bootloaders/multiboot2/Multiboot.hpp>
 #include <common/assert.h>
+#include <bootloaders/gitboot/GitBoot.hpp>
+#include <bootloaders/multiboot2/Multiboot.hpp>
+#include <drivers/ps2mouse/PS2Mouse.hpp>
 
 #include "drivers/graphics/graphics.hpp"
-#include "drivers/graphics/vbe/vbe_graphics.hpp"
 #include "drivers/graphics/text_mode/text_mode.hpp"
+#include "drivers/graphics/vbe/vbe_graphics.hpp"
 #include "syscall/syscall.hpp"
 
 extern "C"
 {
-#include <stdint.h>
 #include <stdarg.h>
-#include "idt/idt.h"
-#include "drivers/serial/serial.h"
+#include <stdint.h>
+#include "common/string.h"
+#include "drivers/disk/disk.h"
 #include "drivers/pic/pic.h"
+#include "drivers/ps2keyboard/ps2keyboard.h"
+#include "drivers/serial/serial.h"
+#include "fs/fat16/fat16.h"
+#include "fs/file.h"
+#include "gdt/gdt.h"
+#include "idt/idt.h"
 #include "memory/heap/kheap.h"
 #include "memory/memory.h"
-#include "common/string.h"
 #include "memory/paging/paging.h"
-#include "drivers/disk/disk.h"
-#include "fs/file.h"
-#include "fs/fat16/fat16.h"
-#include "gdt/gdt.h"
-#include "task/tss.h"
-#include "task/task.h"
 #include "task/process.h"
-#include "drivers/ps2keyboard/ps2keyboard.h"
+#include "task/task.h"
+#include "task/tss.h"
 }
 
 extern "C" int atexit(void (*)())
@@ -36,44 +36,44 @@ extern "C" int atexit(void (*)())
     return 0;
 }
 
-void *operator new(size_t size)
+void* operator new(size_t size)
 {
     return kzalloc(size);
 }
 
-void *operator new[](size_t size)
+void* operator new[](size_t size)
 {
     return kzalloc(size);
 }
 
-void operator delete(void *p)
+void operator delete(void* p)
 {
     kfree(p);
 }
 
-void operator delete[](void *p)
+void operator delete[](void* p)
 {
     kfree(p);
 }
-static struct paging_chunk *kernel_paging_chunk;
+static struct paging_chunk* kernel_paging_chunk;
 
-static Graphics* get_graphics() {
+static Graphics* get_graphics()
+{
     if (static_cast<VBEGraphics*>(VBEGraphics::the())->is_vbe())
         return VBEGraphics::the();
     else
         return TextModeGraphics::the();
 }
 
-
 struct tss tss;
 struct gdt gdt_real[TOTAL_GDT_SEGMENTS];
 struct gdt_structured gdt_structured[TOTAL_GDT_SEGMENTS] = {
-    {.base = 0x00, .limit = 0x00, .type = 0x00},       // NULL
-    {.base = 0x00, .limit = 0xFFFFFFFF, .type = 0x9A}, // KERNEL CODE
-    {.base = 0x00, .limit = 0xFFFFFFFF, .type = 0x92}, // KERNEL DATA
-    {.base = 0x00, .limit = 0xFFFFFFFF, .type = 0xF8}, // USER CODE
-    {.base = 0x00, .limit = 0xFFFFFFFF, .type = 0xF2}, // USER DATA
-    {.base = (uint32_t)&tss, .limit = sizeof(tss), .type = 0xE9}, // TASK SWITCH SEGMENT
+    { .base = 0x00, .limit = 0x00, .type = 0x00 },                   // NULL
+    { .base = 0x00, .limit = 0xFFFFFFFF, .type = 0x9A },             // KERNEL CODE
+    { .base = 0x00, .limit = 0xFFFFFFFF, .type = 0x92 },             // KERNEL DATA
+    { .base = 0x00, .limit = 0xFFFFFFFF, .type = 0xF8 },             // USER CODE
+    { .base = 0x00, .limit = 0xFFFFFFFF, .type = 0xF2 },             // USER DATA
+    { .base = (uint32_t)&tss, .limit = sizeof(tss), .type = 0xE9 },  // TASK SWITCH SEGMENT
 };
 
 void print_interrupt_frame(struct interrupt_frame* frame)
@@ -81,21 +81,21 @@ void print_interrupt_frame(struct interrupt_frame* frame)
     char internal_buf[512];
     memset(internal_buf, 0, 512);
     ksprintf(internal_buf, "Interrupt frame:\nedi: %d (0x%x)\nesi: %d (0x%x)\nebp: %d (0x%x)\nebx: %d (0x%x)\nedx: %d (0x%x)\necx: %d (0x%x)\neax: %d (0x%x)\nip: 0x%x\nflags: 0b%b\nesp: 0x%x\ncs: 0x%x\nss: 0x%x\nerror: %d\n",
-    frame->edi, frame->edi,
-    frame->esi, frame->esi,
-    frame->ebp, frame->ebp,
-    frame->ebx, frame->ebx,
-    frame->edx, frame->edx,
-    frame->ecx, frame->ecx,
-    frame->eax, frame->eax,
-    frame->ip, frame->flags, frame->esp, frame->cs, frame->ss, frame->error_code);
+             frame->edi, frame->edi,
+             frame->esi, frame->esi,
+             frame->ebp, frame->ebp,
+             frame->ebx, frame->ebx,
+             frame->edx, frame->edx,
+             frame->ecx, frame->ecx,
+             frame->eax, frame->eax,
+             frame->ip, frame->flags, frame->esp, frame->cs, frame->ss, frame->error_code);
     get_graphics()->print_string_color(internal_buf, Graphics::GREY);
     ser_PrintString(COM1, internal_buf);
 }
 
 /**
  * @brief Temporary PIC Timer interrupt handler
- * 
+ *
  * @param frame Interrupt frame
  */
 void timer_interrupt(int int_no, struct interrupt_frame* frame)
@@ -107,18 +107,18 @@ void timer_interrupt(int int_no, struct interrupt_frame* frame)
     task_return(&task_current()->registers);
 }
 
-void kernel_exception(int int_no, struct interrupt_frame* frame) {
-
+void kernel_exception(int int_no, struct interrupt_frame* frame)
+{
     uint32_t cr0, cr2;
 
-    asm volatile (
+    asm volatile(
         "mov %%cr0, %0"
-        : "=r" (cr0) // Output
+        : "=r"(cr0)  // Output
     );
 
-    asm volatile (
+    asm volatile(
         "mov %%cr2, %0"
-        : "=r" (cr2) // Output
+        : "=r"(cr2)  // Output
     );
 
     char internal_buf[1024];
@@ -138,15 +138,16 @@ void kernel_exception(int int_no, struct interrupt_frame* frame) {
     get_graphics()->set_text_color(Graphics::GREY);
     memset(internal_buf, 0, sizeof(internal_buf));
 
-    ksprintf(internal_buf,"cr0: 0b%b\ncr2: %d (0x%x)\n\n", cr0, cr2, cr2);
+    ksprintf(internal_buf, "cr0: 0b%b\ncr2: %d (0x%x)\n\n", cr0, cr2, cr2);
     get_graphics()->print_string(internal_buf);
     ser_PrintString(COM1, internal_buf);
 
     memset(internal_buf, 0, sizeof(internal_buf));
     ksprintf(internal_buf, "Stack trace:\n");
-    uint32_t *ebp = (uint32_t *)frame->ebp;
+    uint32_t* ebp = (uint32_t*)frame->ebp;
 
-    while (ebp != 0) {
+    while (ebp != 0)
+    {
         uint32_t returnAddress = ebp[1];
 
         memset(internal_buf, 0, sizeof(internal_buf));
@@ -155,20 +156,22 @@ void kernel_exception(int int_no, struct interrupt_frame* frame) {
         get_graphics()->print_string(internal_buf);
         ser_PrintString(COM1, internal_buf);
 
-
         // Move ebp up to the caller's frame
-        ebp = (uint32_t *)ebp[0];  // dereference saved EBP
+        ebp = (uint32_t*)ebp[0];  // dereference saved EBP
     }
 
-    if ((frame->cs & 0x3) == 3) {
+    if ((frame->cs & 0x3) == 3)
+    {
         process_terminate(task_current()->process);
         task_switch(process_current()->task);
         task_return(&task_current()->registers);
     }
-    else {
+    else
+    {
         ser_PrintString(COM1, "GitOS halted.");
         get_graphics()->print_string("GitOS halted.");
-        while (1);
+        while (1)
+            ;
     }
 }
 
@@ -208,7 +211,7 @@ void kernel_main(uint32_t magic, void* info_ptr)
     kprintf("Initializing GDT..");
     memset(gdt_real, 0, sizeof(gdt_real));
     gdt_structured_to_gdt(gdt_real, gdt_structured, TOTAL_GDT_SEGMENTS);
-    gdt_load(gdt_real, sizeof(gdt_real)-1);
+    gdt_load(gdt_real, sizeof(gdt_real) - 1);
 
     struct gdt_descriptor gdt_content;
     gdt_read(&gdt_content);
@@ -224,21 +227,21 @@ void kernel_main(uint32_t magic, void* info_ptr)
         idt_SetHandler(i, kernel_exception);
 
     idt_SetHandler(0x20, timer_interrupt);
-    idt_SetDescriptor(0x80, (void*) syscall_wrapper);
+    idt_SetDescriptor(0x80, (void*)syscall_wrapper);
     idt_Load();
     kprintf("OK\r\n");
     //
 
     // Initialize TSS
     kprintf("Initializing TSS..");
-    memset(&tss,0,sizeof(tss));
+    memset(&tss, 0, sizeof(tss));
     tss.esp0 = 0x600000;
     tss.ss0 = KERNEL_DATA_SELECTOR;
-    tss_load(sizeof(struct gdt) * 5); //TSS Segment is 6th GDT Segment
+    tss_load(sizeof(struct gdt) * 5);  // TSS Segment is 6th GDT Segment
     kprintf("OK\n");
     //
 
-    //Initialize heap
+    // Initialize heap
     uint64_t base_address = Bootloader::the()->get_heap_base_address();
     uint64_t length_in_bytes = Bootloader::the()->get_heap_size();
 
@@ -252,7 +255,7 @@ void kernel_main(uint32_t magic, void* info_ptr)
 
     kprintf("Heap address: 0x%llp, Size: %lldKB\r\n", base_address, length_in_bytes / 1024);
 
-    res = kheap_init((void *) base_address, length_in_bytes);
+    res = kheap_init((void*)base_address, length_in_bytes);
     if (res < 0)
     {
         kernel_panic("Failed to create heap!");
@@ -298,8 +301,8 @@ void kernel_main(uint32_t magic, void* info_ptr)
     struct process* process = new struct process;
     res = process_load_switch("0:/shell.elf", process);
     process->argc = 2;
-    process->argv[0] = (char*) "zofia.elf";
-    process->argv[1] = (char*) "hello:)";
+    process->argv[0] = (char*)"zofia.elf";
+    process->argv[1] = (char*)"hello:)";
 
     if (res != 0)
     {
@@ -320,7 +323,7 @@ void kernel_main(uint32_t magic, void* info_ptr)
  * @param fmt Reason of the panic
  * @param ... Arguments
  */
-void kernel_panic(const char *fmt, ...)
+void kernel_panic(const char* fmt, ...)
 {
     va_list args;
     va_start(args, fmt);
@@ -348,7 +351,7 @@ void kernel_halt()
  * @param fmt Message to format and print.
  * @param ... Arguments
  */
-void kprintf(const char *fmt, ...)
+void kprintf(const char* fmt, ...)
 {
     va_list args;
     va_start(args, fmt);
@@ -365,7 +368,8 @@ extern "C" void __cxa_pure_virtual()
     // If we ever hit this, we've attempted to call a pure virtual method.
     // In a kernel, you might hang, panic, or debug log.
     // For example:
-    for (;;) {
+    for (;;)
+    {
         kernel_panic("__cxa_pure_virtual");
     }
 }

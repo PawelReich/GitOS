@@ -3,8 +3,8 @@
 //
 
 #include "string.h"
-#include <stddef.h>
 #include <stdarg.h>
+#include <stddef.h>
 /**
  * @brief Determine the length of a string
  *
@@ -14,7 +14,7 @@
 size_t strlen(const char* str)
 {
     size_t len = 0;
-    while(str[len] != 0)
+    while (str[len] != 0)
     {
         len++;
     }
@@ -30,12 +30,12 @@ size_t strlen(const char* str)
  */
 size_t strnlen(const char* str, size_t max_len)
 {
-	for (size_t len = 0; len < max_len; len++)
-	{
-		if (str[len] == 0)
-			return len;
-	}
-	return max_len;
+    for (size_t len = 0; len < max_len; len++)
+    {
+        if (str[len] == 0)
+            return len;
+    }
+    return max_len;
 }
 
 /**
@@ -44,9 +44,9 @@ size_t strnlen(const char* str, size_t max_len)
  * @param str String to reverse
  * @return char* str
  */
-char* strrev(char *str)
+char* strrev(char* str)
 {
-    if (!str || ! *str)
+    if (!str || !*str)
         return str;
 
     int i = strlen(str) - 1, j = 0;
@@ -72,15 +72,15 @@ char* strrev(char *str)
  */
 char* strcpy(char* dest, const char* src)
 {
-	char* dest_org = dest;
-	while (*src != 0)
-	{
-		*dest = *src;
-		src++;
-		dest++;
-	}
-	*dest = '\0';
-	return dest_org;
+    char* dest_org = dest;
+    while (*src != 0)
+    {
+        *dest = *src;
+        src++;
+        dest++;
+    }
+    *dest = '\0';
+    return dest_org;
 }
 
 /**
@@ -93,17 +93,17 @@ char* strcpy(char* dest, const char* src)
  */
 char* strncpy(char* dest, const char* src, size_t n)
 {
-	char* dest_org = dest;
+    char* dest_org = dest;
 
-	size_t i;
-	for (i = 0; i < n-1; i++)
-	{
-		if (src[i] == 0)
-			break;
-		dest[i] = src[i];
-	}
-	dest[i] = 0;
-	return dest_org;
+    size_t i;
+    for (i = 0; i < n - 1; i++)
+    {
+        if (src[i] == 0)
+            break;
+        dest[i] = src[i];
+    }
+    dest[i] = 0;
+    return dest_org;
 }
 
 /**
@@ -118,7 +118,7 @@ int strncmp(const char* str1, const char* str2, size_t n)
 {
     unsigned char u1, u2;
 
-    while(n-- > 0)
+    while (n-- > 0)
     {
         u1 = (unsigned char)*str1++;
         u2 = (unsigned char)*str2++;
@@ -137,8 +137,9 @@ int strncmp(const char* str1, const char* str2, size_t n)
  * @param str2 String
  * @return int 0 -> str1==str2, <0 -> str1<str2, >0 ->str1>str2
  */
-int strcmp(const char* str1, const char* str2) {
-	return strncmp(str1, str2, strlen(str1));
+int strcmp(const char* str1, const char* str2)
+{
+    return strncmp(str1, str2, strlen(str1));
 }
 
 /**
@@ -149,16 +150,16 @@ int strcmp(const char* str1, const char* str2) {
  */
 char tolower(char c)
 {
-	if (c >= 65 && c <= 90)
-		c += 32;
-	return c;
+    if (c >= 65 && c <= 90)
+        c += 32;
+    return c;
 }
 
 int istrncmp(const char* str1, const char* str2, size_t n)
 {
     unsigned char u1, u2;
 
-    while(n-- > 0)
+    while (n-- > 0)
     {
         u1 = (unsigned char)*str1++;
         u2 = (unsigned char)*str2++;
@@ -181,13 +182,13 @@ int istrncmp(const char* str1, const char* str2, size_t n)
  */
 size_t strnlen_terminator(const char* str, size_t max, char terminator)
 {
-	size_t i;
-	for (i = 0; i < max; i++)
-	{
-		if (str[i] == 0 || str[i] == terminator)
-			break;
-	}
-	return i;
+    size_t i;
+    for (i = 0; i < max; i++)
+    {
+        if (str[i] == 0 || str[i] == terminator)
+            break;
+    }
+    return i;
 }
 
 /**
@@ -200,36 +201,36 @@ size_t strnlen_terminator(const char* str, size_t max, char terminator)
  */
 char* itoa(long num, char* str, int base)
 {
-	int idx = 0;
-	int negative = 0;
+    int idx = 0;
+    int negative = 0;
 
-	if (num == 0)
-	{
-		str[idx++] = '0';
-		str[idx] = '\0';
-		return str;
-	}
-	if (num < 0 && base == 10)
-	{
-		negative = 1;
-		num = -num;
-	}
+    if (num == 0)
+    {
+        str[idx++] = '0';
+        str[idx] = '\0';
+        return str;
+    }
+    if (num < 0 && base == 10)
+    {
+        negative = 1;
+        num = -num;
+    }
 
-	while (num != 0)
-	{
-		long rem = num % base;
-		str[idx++] = (rem > 9) ? (rem-10) + 'a' : rem + '0';
-		num = num / base;
-	}
+    while (num != 0)
+    {
+        long rem = num % base;
+        str[idx++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
+        num = num / base;
+    }
 
-	if (negative)
-		str[idx++] = '-';
+    if (negative)
+        str[idx++] = '-';
 
-	str[idx] = '\0';
+    str[idx] = '\0';
 
-	strrev(str);
+    strrev(str);
 
-	return str;
+    return str;
 }
 
 /**
@@ -242,29 +243,28 @@ char* itoa(long num, char* str, int base)
  */
 char* uitoa(unsigned long num, char* str, int base)
 {
-	int idx = 0;
+    int idx = 0;
 
-	if (num == 0)
-	{
-		str[idx++] = '0';
-		str[idx] = '\0';
-		return str;
-	}
+    if (num == 0)
+    {
+        str[idx++] = '0';
+        str[idx] = '\0';
+        return str;
+    }
 
-	while (num != 0)
-	{
-		long rem = num % base;
-		str[idx++] = (rem > 9) ? (rem-10) + 'a' : rem + '0';
-		num = num / base;
-	}
+    while (num != 0)
+    {
+        long rem = num % base;
+        str[idx++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
+        num = num / base;
+    }
 
-	str[idx] = '\0';
+    str[idx] = '\0';
 
-	strrev(str);
+    strrev(str);
 
-	return str;
+    return str;
 }
-
 
 /**
  * @brief Kernel vsprintf
@@ -276,126 +276,124 @@ char* uitoa(unsigned long num, char* str, int base)
  */
 char* vsprintf(char* buf, const char* fmt, va_list args)
 {
-	char* org_buf = buf;
+    char* org_buf = buf;
 
-	char internal_buffer[512];
+    char internal_buffer[512];
 
-	while (*fmt != 0)
-	{
-		if (*fmt != '%')
-		{
-			*buf = *fmt;
-			buf++;
-			fmt++;
-			continue;
-		}
+    while (*fmt != 0)
+    {
+        if (*fmt != '%')
+        {
+            *buf = *fmt;
+            buf++;
+            fmt++;
+            continue;
+        }
 
-		fmt++;
-		switch (*fmt)
-		{
-			int sz;
-			case '%':
-				*buf = '%';
-				buf++;
-				fmt++;
-				break;
+        fmt++;
+        switch (*fmt)
+        {
+            int sz;
+            case '%':
+                *buf = '%';
+                buf++;
+                fmt++;
+                break;
 
-			case 'c':
-				*buf = (char) va_arg(args, int);
-				buf++;
-				fmt++;
-				break;
+            case 'c':
+                *buf = (char)va_arg(args, int);
+                buf++;
+                fmt++;
+                break;
 
-			case 's':
-				;
-				char* s = va_arg(args, char*);
-				sz = strlen(s);
-				memcpy(buf, s, sz);
-				buf +=sz;
-				fmt++;
-				break;
+            case 's':;
+                char* s = va_arg(args, char*);
+                sz = strlen(s);
+                memcpy(buf, s, sz);
+                buf += sz;
+                fmt++;
+                break;
 
-			case 'p':
-				memset(internal_buffer, 0, 512);
-				uitoa(va_arg(args, long), internal_buffer, 16);
-				sz = strlen(internal_buffer);
-				memcpy(buf, internal_buffer, sz);
-				buf += sz;
-				fmt++;
-				break;
+            case 'p':
+                memset(internal_buffer, 0, 512);
+                uitoa(va_arg(args, long), internal_buffer, 16);
+                sz = strlen(internal_buffer);
+                memcpy(buf, internal_buffer, sz);
+                buf += sz;
+                fmt++;
+                break;
 
-			case 'l': //Longer
-				fmt++;
-				switch (*fmt)
-				{
-					case 'i':
-					case 'd':
-						memset(internal_buffer, 0, 512);
-						itoa(va_arg(args, long), internal_buffer, 10);
-						sz = strlen(internal_buffer);
-						memcpy(buf, internal_buffer, sz);
-						buf += sz;
-						fmt++;
-						break;
+            case 'l':  // Longer
+                fmt++;
+                switch (*fmt)
+                {
+                    case 'i':
+                    case 'd':
+                        memset(internal_buffer, 0, 512);
+                        itoa(va_arg(args, long), internal_buffer, 10);
+                        sz = strlen(internal_buffer);
+                        memcpy(buf, internal_buffer, sz);
+                        buf += sz;
+                        fmt++;
+                        break;
 
-					case 'x':
-						memset(internal_buffer, 0, 512);
-						uitoa(va_arg(args, unsigned long), internal_buffer, 16);
-						sz = strlen(internal_buffer);
-						memcpy(buf, internal_buffer, sz);
-						buf += sz;
-						fmt++;
-						break;
+                    case 'x':
+                        memset(internal_buffer, 0, 512);
+                        uitoa(va_arg(args, unsigned long), internal_buffer, 16);
+                        sz = strlen(internal_buffer);
+                        memcpy(buf, internal_buffer, sz);
+                        buf += sz;
+                        fmt++;
+                        break;
 
-					case 'b':
-						memset(internal_buffer, 0, 512);
-						uitoa(va_arg(args, unsigned long), internal_buffer, 2);
-						sz = strlen(internal_buffer);
-						memcpy(buf, internal_buffer, sz);
-						buf += sz;
-						fmt++;
-						break;
-					default:
-						fmt++;
-						break;
-				}
-				break;
+                    case 'b':
+                        memset(internal_buffer, 0, 512);
+                        uitoa(va_arg(args, unsigned long), internal_buffer, 2);
+                        sz = strlen(internal_buffer);
+                        memcpy(buf, internal_buffer, sz);
+                        buf += sz;
+                        fmt++;
+                        break;
+                    default:
+                        fmt++;
+                        break;
+                }
+                break;
 
-			case 'x':
-				memset(internal_buffer, 0, 512);
-				uitoa(va_arg(args, unsigned int), internal_buffer, 16);
-				sz = strlen(internal_buffer);
-				memcpy(buf, internal_buffer, sz);
-				buf += sz;
-				fmt++;
-				break;
-			case 'i':
-			case 'd':
-				memset(internal_buffer, 0, 512);
-				itoa(va_arg(args, int), internal_buffer, 10);
-				sz = strlen(internal_buffer);
-				memcpy(buf, internal_buffer, sz);
-				buf += sz;
-				fmt++;
-				break;
+            case 'x':
+                memset(internal_buffer, 0, 512);
+                uitoa(va_arg(args, unsigned int), internal_buffer, 16);
+                sz = strlen(internal_buffer);
+                memcpy(buf, internal_buffer, sz);
+                buf += sz;
+                fmt++;
+                break;
+            case 'i':
+            case 'd':
+                memset(internal_buffer, 0, 512);
+                itoa(va_arg(args, int), internal_buffer, 10);
+                sz = strlen(internal_buffer);
+                memcpy(buf, internal_buffer, sz);
+                buf += sz;
+                fmt++;
+                break;
 
-			case 'b':
-				memset(internal_buffer, 0, 512);
-				uitoa(va_arg(args, unsigned int), internal_buffer, 2);
-				sz = strlen(internal_buffer);
-				memcpy(buf, internal_buffer, sz);
-				buf += sz;
-				fmt++;
-				break;
+            case 'b':
+                memset(internal_buffer, 0, 512);
+                uitoa(va_arg(args, unsigned int), internal_buffer, 2);
+                sz = strlen(internal_buffer);
+                memcpy(buf, internal_buffer, sz);
+                buf += sz;
+                fmt++;
+                break;
 
-			default:
-				fmt++;
-				break;
-		}
-
-	}
-	va_end(args);
-	return org_buf;
+            default:
+                fmt++;
+                break;
+        }
+    }
+    va_end(args);
+    return org_buf;
 }
 
 /**
@@ -408,11 +406,11 @@ char* vsprintf(char* buf, const char* fmt, va_list args)
  */
 char* sprintf(char* buf, const char* fmt, ...)
 {
-	va_list args;
-	va_start(args, fmt);
+    va_list args;
+    va_start(args, fmt);
 
-	vsprintf(buf, fmt, args);
-	return buf;
+    vsprintf(buf, fmt, args);
+    return buf;
 }
 
 /**
@@ -423,7 +421,7 @@ char* sprintf(char* buf, const char* fmt, ...)
  */
 int is_digit(char c)
 {
-	return c >= 48 && c <= 57;
+    return c >= 48 && c <= 57;
 }
 
 /**
@@ -434,9 +432,8 @@ int is_digit(char c)
  */
 int to_numeric_digit(char c)
 {
-	return c - 48;
+    return c - 48;
 }
-
 
 /**
  * @brief Sets first bytes of memory pointed to specified value
@@ -448,12 +445,12 @@ int to_numeric_digit(char c)
  */
 void* memset(void* ptr, int c, size_t size)
 {
-	char* c_ptr = (char*) ptr;
-	for (size_t i = 0; i < size; i++)
-	{
-		c_ptr[i] = (char) c;
-	}
-	return ptr;
+    char* c_ptr = (char*)ptr;
+    for (size_t i = 0; i < size; i++)
+    {
+        c_ptr[i] = (char)c;
+    }
+    return ptr;
 }
 
 /**
@@ -466,11 +463,11 @@ void* memset(void* ptr, int c, size_t size)
  */
 void* memcpy(void* dstptr, const void* srcptr, size_t size)
 {
-	unsigned char* dst = (unsigned char*) dstptr;
-	const unsigned char* src = (const unsigned char*) srcptr;
-	for (size_t i = 0; i < size; i++)
-		dst[i] = src[i];
-	return dstptr;
+    unsigned char* dst = (unsigned char*)dstptr;
+    const unsigned char* src = (const unsigned char*)srcptr;
+    for (size_t i = 0; i < size; i++)
+        dst[i] = src[i];
+    return dstptr;
 }
 
 /**
@@ -486,13 +483,13 @@ void* memcpy(void* dstptr, const void* srcptr, size_t size)
  */
 int memcmp(void* ptr1, void* ptr2, size_t len)
 {
-	unsigned char* c1 = ptr1;
-	unsigned char* c2 = ptr2;
+    unsigned char* c1 = ptr1;
+    unsigned char* c2 = ptr2;
 
-	while (len-- > 0)
-	{
-		if (*c1++ != *c2++)
-			return c1[-1] < c2[-1] ? -1 : 1;
-	}
-	return 0;
+    while (len-- > 0)
+    {
+        if (*c1++ != *c2++)
+            return c1[-1] < c2[-1] ? -1 : 1;
+    }
+    return 0;
 }

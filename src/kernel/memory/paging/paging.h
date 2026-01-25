@@ -8,7 +8,7 @@
 #define PAGING_IS_PRESENT      0b00000001
 
 #define PAGING_TOTAL_ENTRIES_PER_TABLE 1024
-#define PAGING_PAGE_SIZE 4096
+#define PAGING_PAGE_SIZE               4096
 
 struct paging_chunk
 {

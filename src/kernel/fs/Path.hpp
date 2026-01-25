@@ -5,11 +5,13 @@
 #pragma once
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 #define MAX_PATH 1024
-    struct path_part {
+    struct path_part
+    {
         char* part;
         struct path_part* next;
     };
@@ -23,15 +25,14 @@ extern "C" {
 
 #ifdef __cplusplus
 #include <stdint-gcc.h>
-class Path {
-
-public:
-    static path_part* parse(const char *path);
-    static path_part* parse(const char *path, Path *relative);
+class Path
+{
+   public:
+    static path_part* parse(const char* path);
+    static path_part* parse(const char* path, Path* relative);
 
     static bool valid(const char* path);
 
     static constexpr uint32_t PART_MAX_LEN = 1024;
 };
 #endif
-

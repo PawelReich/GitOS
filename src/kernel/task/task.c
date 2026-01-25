@@ -3,14 +3,14 @@
 #include <common/assert.h>
 
 #include "common/status.h"
-#include "memory/paging/paging.h"
-#include "memory/heap/kheap.h"
+#include "common/string.h"
 #include "gdt/gdt.h"
 #include "idt/idt.h"
-#include "memory/memory.h"
-#include "process.h"
 #include "kernel.h"
-#include "common/string.h"
+#include "memory/heap/kheap.h"
+#include "memory/memory.h"
+#include "memory/paging/paging.h"
+#include "process.h"
 
 struct task* current_task = 0;
 
@@ -21,7 +21,7 @@ int task_init(struct task* task, struct process* process);
 
 /**
  * @brief Returns currently running task
- * 
+ *
  * @return struct task* Current task
  */
 struct task* task_current()
@@ -43,7 +43,6 @@ void task_save_state(struct task* task, struct interrupt_frame* frame)
     task->registers.esi = frame->esi;
     task->registers.ebp = frame->ebp;
     task->registers.esp = frame->esp;
-
 }
 
 void task_current_save_state(struct interrupt_frame* frame)
@@ -59,7 +58,7 @@ void task_current_save_state(struct interrupt_frame* frame)
 
 /**
  * @brief Returns next task in list (or first if there is no next task in current_task)
- * 
+ *
  * @return struct task* Next task
  */
 struct task* task_get_next()
@@ -91,8 +90,8 @@ static void task_list_remove(struct task* task)
 }
 
 /**
- * @brief Frees all data associated with task struct 
- * 
+ * @brief Frees all data associated with task struct
+ *
  * @param task Task to free
  * @return int Error code
  */
@@ -106,7 +105,7 @@ int task_free(struct task* task)
 
 /**
  * @brief Switch current task (switch pages)
- * 
+ *
  * @param task Task to switch to
  * @return int Error code
  */
@@ -119,7 +118,7 @@ int task_switch(struct task* task)
 
 /**
  * @brief Loads into the task's page
- * 
+ *
  * @return int Error code
  */
 int task_page()
@@ -141,7 +140,7 @@ void task_run_first_ever_task()
 
 /**
  * @brief Initializes task struct's ip,ss,esp registers and created new paging directory
- * 
+ *
  * @param task Struct to be initialized
  * @return int Error code
  */
@@ -154,7 +153,7 @@ int task_init(struct task* task, struct process* process)
     {
         return -EIO;
     }
-    task->registers.ip = (uint32_t) process->elf_entry;
+    task->registers.ip = (uint32_t)process->elf_entry;
     task->registers.ss = USER_DATA_SELECTOR;
     task->registers.cs = USER_CODE_SELECTOR;
     task->registers.esp = PROGRAM_VIRTUAL_STACK_ADDRESS_START;
@@ -164,7 +163,6 @@ int task_init(struct task* task, struct process* process)
 
     return 0;
 }
-
 
 struct task* task_new(struct process* process)
 {
@@ -180,7 +178,7 @@ struct task* task_new(struct process* process)
     res = task_init(task, process);
     if (ISERR(res))
         goto out;
-    
+
     if (task_head == 0)
     {
         task_head = task;
@@ -193,7 +191,7 @@ struct task* task_new(struct process* process)
     task->prev = task_tail;
     task_tail = task;
 
-    out:
+out:
     if (ISERR(res))
     {
         task_free(task);
@@ -214,7 +212,7 @@ int task_copy_string_from(struct task* task, void* virtual_address, void* physic
 
     uint32_t* task_directory = task->page_directory->directory_entry;
     uint32_t old_entry = paging_get_page(task_directory, tmp);
-    paging_set_page(task->page_directory->directory_entry, tmp, (uint32_t) tmp | PAGING_IS_PRESENT | PAGING_IS_WRITEABLE | PAGING_ACCESS_FROM_ALL);
+    paging_set_page(task->page_directory->directory_entry, tmp, (uint32_t)tmp | PAGING_IS_PRESENT | PAGING_IS_WRITEABLE | PAGING_ACCESS_FROM_ALL);
     paging_switch(task->page_directory);
     strncpy(tmp, virtual_address, max);
     kernel_page();
@@ -238,11 +236,11 @@ void* task_peek_stack(struct task* task, int offset)
 {
     void* res = 0;
 
-    uint32_t* sp_ptr = (uint32_t*) task->registers.esp;
+    uint32_t* sp_ptr = (uint32_t*)task->registers.esp;
 
     task_page_task(task);
 
-    res = (void*) sp_ptr[offset];
+    res = (void*)sp_ptr[offset];
 
     kernel_page();
 

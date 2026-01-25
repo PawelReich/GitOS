@@ -1,9 +1,9 @@
 #include "gdt.h"
 #include "kernel.h"
 
-struct gdt_descriptor gdt_descriptor = {0};
+struct gdt_descriptor gdt_descriptor = { 0 };
 
-void encode_gdt_entry(uint8_t *target, struct gdt_structured src)
+void encode_gdt_entry(uint8_t* target, struct gdt_structured src)
 {
     if ((src.limit > 65536) && (src.limit & 0xFFF) != 0xFFF)
     {
@@ -11,9 +11,9 @@ void encode_gdt_entry(uint8_t *target, struct gdt_structured src)
     }
 
     // Encode limit
-    if (src.limit > 65536) // Set granularity bit
+    if (src.limit > 65536)  // Set granularity bit
     {
-        src.limit = src.limit >> 12; // Divide by 2^12 (4096).
+        src.limit = src.limit >> 12;  // Divide by 2^12 (4096).
         target[6] = 0b11000000;
     }
     else
@@ -35,24 +35,24 @@ void encode_gdt_entry(uint8_t *target, struct gdt_structured src)
     target[5] = src.type;
 }
 
-void gdt_structured_to_gdt(struct gdt *gdt, struct gdt_structured *structured_gdt, unsigned int total_entries)
+void gdt_structured_to_gdt(struct gdt* gdt, struct gdt_structured* structured_gdt, unsigned int total_entries)
 {
     for (unsigned int i = 0; i < total_entries; i++)
     {
-        encode_gdt_entry((uint8_t *)&gdt[i], structured_gdt[i]);
+        encode_gdt_entry((uint8_t*)&gdt[i], structured_gdt[i]);
     }
 }
 
-void gdt_load(struct gdt *gdt, unsigned int size)
+void gdt_load(struct gdt* gdt, unsigned int size)
 {
     // kprintf("Loading GDT in %x, sz: %d\n", gdt, size);
     gdt_descriptor.size = size;
     gdt_descriptor.start_address = (uint32_t)gdt;
 
-    asm volatile("lgdt %0" : : "m" (gdt_descriptor));
+    asm volatile("lgdt %0" : : "m"(gdt_descriptor));
 }
 
-void gdt_read(struct gdt_descriptor *target)
+void gdt_read(struct gdt_descriptor* target)
 {
-    asm volatile ("sgdt %0" : "=m"(*target));
+    asm volatile("sgdt %0" : "=m"(*target));
 }

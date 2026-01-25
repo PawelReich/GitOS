@@ -4,7 +4,7 @@
 
 /**
  * @brief Validates heap_table structure
- * 
+ *
  * @param ptr Starting address
  * @param end Ending address
  * @param table Heap table
@@ -12,7 +12,7 @@
  */
 static int heap_validate_table(void* ptr, void* end, heap_table* table)
 {
-    size_t table_size = (size_t) end - (size_t) ptr;
+    size_t table_size = (size_t)end - (size_t)ptr;
     size_t total_blocks = table_size / HEAP_BLOCK_SIZE;
     if (table->total != total_blocks)
         return -EINVARG;
@@ -21,7 +21,7 @@ static int heap_validate_table(void* ptr, void* end, heap_table* table)
 
 /**
  * @brief Makes sure that pointer is aligned
- * 
+ *
  * @param ptr Pointer
  * @return int 0 if aligned
  */
@@ -32,13 +32,14 @@ static int heap_validate_alignment(void* ptr)
 
 /**
  * @brief Upper aligns size
- * 
+ *
  * @param val Size to align
  * @return uint32_t Aligned size
  */
 static uint32_t heap_align_size(uint32_t val)
 {
-    if ((val % HEAP_BLOCK_SIZE) == 0) return val;
+    if ((val % HEAP_BLOCK_SIZE) == 0)
+        return val;
 
     val = (val - (val % HEAP_BLOCK_SIZE)) + HEAP_BLOCK_SIZE;
     return val;
@@ -46,7 +47,7 @@ static uint32_t heap_align_size(uint32_t val)
 
 /**
  * @brief Extracts entry type
- * 
+ *
  * @param entry Entry to extract
  * @return int Type
  */
@@ -57,7 +58,7 @@ static int heap_get_entry_type(HEAP_BLOCK_TABLE_ENTRY entry)
 
 /**
  * @brief Converts block number to address
- * 
+ *
  * @param heap Heap to manage
  * @param block Block to convert
  * @return void* Address
@@ -69,7 +70,7 @@ static void* heap_block_to_address(heap* heap, int block)
 
 /**
  * @brief Converts pointer to block number
- * 
+ *
  * @param heap Heap to manage
  * @param ptr Address to convert
  * @return int Block number
@@ -81,7 +82,7 @@ static int heap_address_to_block(heap* heap, void* ptr)
 
 /**
  * @brief Finds first free set of blocks in heap
- * 
+ *
  * @param heap Heap to manage
  * @param total_blocks Amount of requestes blocks
  * @return int Status
@@ -101,11 +102,11 @@ static int heap_get_start_block(heap* heap, int total_blocks)
             continue;
         }
 
-        if (start_block == -1) //First block
+        if (start_block == -1)  // First block
         {
             start_block = i;
         }
-            current_block++;
+        current_block++;
         if (current_block == total_blocks)
             break;
     }
@@ -118,7 +119,7 @@ static int heap_get_start_block(heap* heap, int total_blocks)
 
 /**
  * @brief Marks blocks taken
- * 
+ *
  * @param heap Heap to manage
  * @param start_block Starting block to mark taken
  * @param total_blocks Total amount of blocks to mark taken
@@ -135,7 +136,7 @@ void heap_mark_blocks_taken(heap* heap, int start_block, int total_blocks)
 
 /**
  * @brief Marks blocks free
- * 
+ *
  * @param heap Heap to manage
  * @param start_block Starting block to mark free
  */
@@ -154,7 +155,7 @@ static void heap_mark_blocks_free(heap* heap, int start_block)
 
 /**
  * @brief Allocates blocks in heap
- * 
+ *
  * @param heap Heap to manage
  * @param total_blocks Requested amount of blocks
  * @return void* Pointer to allocated memory
@@ -176,7 +177,7 @@ static void* heap_malloc_blocks(heap* heap, int total_blocks)
 
 /**
  * @brief Creates heap in specified chunk of memory
- * 
+ *
  * @param heap Heap to manage
  * @param table Heap table to manage
  * @param ptr Starting address
@@ -202,7 +203,7 @@ int heap_create(heap* heap, heap_table* table, void* ptr, void* end)
 
 /**
  * @brief Allocates memory in heap
- * 
+ *
  * @param heap Heap to manage
  * @param size Requested allocation size
  * @return void* Pointer to allocated memory, 0 if errored
@@ -211,12 +212,12 @@ void* heap_malloc(heap* heap, uint32_t size)
 {
     uint32_t aligned_size = heap_align_size(size);
     int total_blocks = aligned_size / HEAP_BLOCK_SIZE;
-    
+
     return heap_malloc_blocks(heap, total_blocks);
 }
 /**
  * @brief Frees specified pointer in heap
- * 
+ *
  * @param heap Heap to manage
  * @param ptr Pointer to free
  */

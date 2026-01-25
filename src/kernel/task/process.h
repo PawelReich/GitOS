@@ -1,16 +1,15 @@
 #pragma once
 
+#include <stddef.h>
 #include <stdint.h>
 #include "fs/Path.hpp"
-#include <stddef.h>
 
-#define PROCESS_MAX_ALLOCATIONS 1024
+#define PROCESS_MAX_ALLOCATIONS      1024
 #define PROCESS_KEYBOARD_BUFFER_SIZE 1024
-#define MAX_PROCESSES 12
+#define MAX_PROCESSES                12
 
 struct process
 {
-
     /**
      * @brief Process ID
      */
@@ -49,7 +48,8 @@ struct process
      */
     void* framebuffer;
 
-    struct keyboard_buffer {
+    struct keyboard_buffer
+    {
         char buffer[PROCESS_KEYBOARD_BUFFER_SIZE];
         int tail;
         int head;

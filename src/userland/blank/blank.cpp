@@ -2,18 +2,20 @@
 // Created by Pawel Reich on 1/17/25.
 //
 
-extern "C" {
+extern "C"
+{
 #include "misc.h"
 #include "stdio.h"
 #include "string.h"
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv)
+{
     (void)(argc);
     (void)(argv);
     void* test = malloc(3);
     memcpy(test, &"OK\0", 3);
-    if (memcmp((void *) &"OK\0", test, 3) == 0)
+    if (memcmp((void*)&"OK\0", test, 3) == 0)
         printf("Allocation test at 0x%p: %s\n", test, test);
     else
         printf("Allocation test: UNSUCCESFUL\n");

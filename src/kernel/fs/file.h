@@ -1,13 +1,13 @@
 #pragma once
 
 #include <stdint.h>
-#include "drivers/disk/disk.h"
 #include "Path.hpp"
+#include "drivers/disk/disk.h"
 
-#define MAX_FILESYSTEMS 12
+#define MAX_FILESYSTEMS     12
 #define MAX_FILEDESCRIPTORS 1024
 #define MAX_FILESYSTEM_NAME 20
-#define MAX_MOUNTED 16384
+#define MAX_MOUNTED         16384
 
 typedef unsigned int FILE_SEEK_MODE;
 typedef unsigned int FILE_MODE;
@@ -17,19 +17,19 @@ enum FILE_SEEK_MODES
 {
     /**
      * @brief Absolute position from 0
-     * 
+     *
      */
     SEEK_SET,
 
     /**
      * @brief Relative position
-     * 
+     *
      */
     SEEK_CUR,
 
     /**
      * @brief Absolute position from the end of file
-     * 
+     *
      */
     SEEK_END
 };
@@ -70,7 +70,6 @@ typedef int (*FS_STAT_FUNCTION)(void* private_fs, struct file_stat* stat);
 typedef int (*FS_CLOSE_FUNCTION)(void* private_fs);
 typedef int (*FS_WRITE_FUNCTION)(void* private_fs, void* descriptor, uint32_t size, uint32_t nmemb, char* in);
 
-
 struct filesystem
 {
     FS_RESOLVE_FUNCTION resolve;
@@ -95,7 +94,8 @@ int fseek(int fd, int offset, FILE_SEEK_MODE whence);
 int fstat(int fd, struct file_stat* stat);
 int fclose(int fd);
 
-struct mounted_file {
+struct mounted_file
+{
     const char* filename;
     struct filesystem* fs;
     void* data;

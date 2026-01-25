@@ -3,17 +3,19 @@
 //
 
 #include <stdint-gcc.h>
-#include <graphics/framebuffer.hpp>
 #include <window/window.h>
+#include <graphics/framebuffer.hpp>
 
-extern "C" {
+extern "C"
+{
 #include <file.h>
-#include <string.h>
 #include <misc.h>
 #include <stdio.h>
+#include <string.h>
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[])
+{
     (void)(argc);
     (void)(argv);
 
@@ -31,7 +33,7 @@ int main(int argc, char *argv[]) {
     char* name = new char[255];
     memset(name, 0, 255);
     strcpy(name, "Window Test\0");
-    fwrite(name, sizeof(char), strlen(name)+1, ws_fd);
+    fwrite(name, sizeof(char), strlen(name) + 1, ws_fd);
 
     preamble->type = WINDOW_MESSAGE::SET_SIZE;
     fwrite(preamble, sizeof(window_message_preamble), 1, ws_fd);
@@ -42,7 +44,7 @@ int main(int argc, char *argv[]) {
 
     preamble->type = WINDOW_MESSAGE::FRAMEBUFFER_DATA;
 
-    uint8_t* full_data = (uint8_t*) malloc(sizeof(window_message_preamble) + fb->get_buffer_size());
+    uint8_t* full_data = (uint8_t*)malloc(sizeof(window_message_preamble) + fb->get_buffer_size());
     memcpy(full_data, preamble, sizeof(window_message_preamble));
 
     while (true)
@@ -51,7 +53,7 @@ int main(int argc, char *argv[]) {
             __asm__ volatile("nop");
         fb->print_string_color("i", 0xffff0000);
 
-        memcpy(full_data+sizeof(window_message_preamble), fb->get_buffer(), fb->get_buffer_size());
+        memcpy(full_data + sizeof(window_message_preamble), fb->get_buffer(), fb->get_buffer_size());
         fwrite(full_data, sizeof(window_message_preamble) + fb->get_buffer_size(), 1, ws_fd);
     }
     return 0;

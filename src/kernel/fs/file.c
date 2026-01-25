@@ -1,22 +1,22 @@
 #include "file.h"
-#include <stdint.h>
 #include <common/assert.h>
-#include "kernel.h"
-#include "common/string.h"
-#include "common/status.h"
-#include "memory/memory.h"
-#include "memory/heap/kheap.h"
+#include <stdint.h>
 #include "Path.hpp"
+#include "common/status.h"
+#include "common/string.h"
+#include "kernel.h"
+#include "memory/heap/kheap.h"
+#include "memory/memory.h"
 
 /**
  * @brief Array holding all registered filesystems
- * 
+ *
  */
 struct filesystem* filesystems[MAX_FILESYSTEMS];
 
 /**
  * @brief Array holding all open file descriptors
- * 
+ *
  */
 struct file_descriptor* file_descriptors[MAX_FILEDESCRIPTORS];
 
@@ -28,7 +28,7 @@ struct mounted_file** mounted;
 
 /**
  * @brief Returns first free slot for filesystem struct
- * 
+ *
  * @return struct filesystem** Pointer to free pointer for filesystem slot
  */
 static struct filesystem** fs_get_free_filesystem_slot()
@@ -44,7 +44,7 @@ static struct filesystem** fs_get_free_filesystem_slot()
 
 /**
  * @brief Allocates and creates new file_descriptor struct
- * 
+ *
  * @param desc_out Created file_descriptor struct
  * @return int Status
  */
@@ -55,8 +55,8 @@ static int file_new_descriptor(struct file_descriptor** desc_out)
         if (file_descriptors[i] == 0)
         {
             struct file_descriptor* desc = kzalloc(sizeof(struct file_descriptor));
-            //Descriptors start at 1
-            desc->index = i+1;
+            // Descriptors start at 1
+            desc->index = i + 1;
             file_descriptors[i] = desc;
             *desc_out = desc;
             return ALL_OK;
@@ -67,7 +67,7 @@ static int file_new_descriptor(struct file_descriptor** desc_out)
 
 /**
  * @brief Returns file descriptor struct for given index
- * 
+ *
  * @param fd File descriptor index
  * @return struct file_descriptor* Struct for given index
  */
@@ -76,14 +76,14 @@ static struct file_descriptor* file_get_descriptor(int fd)
     if (fd <= 0 || fd >= MAX_FILEDESCRIPTORS)
         return 0;
 
-    return file_descriptors[fd-1];
+    return file_descriptors[fd - 1];
 }
 
 /**
  * @brief Frees memory allocated by file descriptor
- * 
- * @param desc 
- * @return int 
+ *
+ * @param desc
+ * @return int
  */
 static int file_free_descriptor(struct file_descriptor* desc)
 {
@@ -92,11 +92,10 @@ static int file_free_descriptor(struct file_descriptor* desc)
     return ALL_OK;
 }
 
-
 /**
  * @brief Inserts filesystem struct into internal array
- * 
- * @param filesystem 
+ *
+ * @param filesystem
  */
 void fs_insert_filesystem(struct filesystem* filesystem)
 {
@@ -110,24 +109,24 @@ void fs_insert_filesystem(struct filesystem* filesystem)
         kernel_panic("No slot free in filesystems array");
     }
     *fs = filesystem;
-    
+
     kprintf("Filesystem %s registered\r\n", filesystem->name);
 }
 
 /**
  * @brief Initializes internal filesystem arrays
- * 
+ *
  */
 void fs_init()
 {
-    memset(filesystems, 0, sizeof(filesystems)); 
+    memset(filesystems, 0, sizeof(filesystems));
     memset(file_descriptors, 0, sizeof(file_descriptors));
     mounted = kzalloc(sizeof(struct mounted_file) * MAX_MOUNTED);
 }
 
 /**
  * @brief Resolves filesystem for given disk
- * 
+ *
  * @param disk Disk to resolve
  * @return struct filesystem* Resolved filesystem, 0 if not resolved
  */
@@ -147,7 +146,7 @@ struct filesystem* fs_resolve(struct disk* disk)
 
 /**
  * @brief Resolved string filemode to internal
- * 
+ *
  * @param str File mode
  * @return FILE_MODE Internal file mode
  */
@@ -173,7 +172,7 @@ static FILE_MODE file_get_mode_by_string(const char* str)
 
 /**
  * @brief Opens file
- * 
+ *
  * @param filename File to open
  * @param str_mode Open mode
  * @return int Status
@@ -186,7 +185,7 @@ int fopen(const char* filename, const char* str_mode)
     if (result < 0)
         return result;
 
-    if (!root_path->next) //Cannot have just root path (without any file)
+    if (!root_path->next)  // Cannot have just root path (without any file)
         return -EINVARG;
 
     FILE_MODE fmode = file_get_mode_by_string(str_mode);
@@ -195,14 +194,16 @@ int fopen(const char* filename, const char* str_mode)
 
     int path_sz = 0;
     struct path_part* part = root_path;
-    while (part) {
+    while (part)
+    {
         part = part->next;
         path_sz++;
     }
 
     part = root_path;
     struct path_part** parts = kzalloc(path_sz * sizeof(struct path_part*));
-    for (int i = 0; i < path_sz; i++) {
+    for (int i = 0; i < path_sz; i++)
+    {
         parts[i] = part;
         part = part->next;
     }
@@ -210,21 +211,27 @@ int fopen(const char* filename, const char* str_mode)
     char* reconstructed_path = kzalloc(MAX_PATH);
 
     int relative_path_to_mounted_idx = path_sz;
-    for (; relative_path_to_mounted_idx >= 0; relative_path_to_mounted_idx--) {
+    for (; relative_path_to_mounted_idx >= 0; relative_path_to_mounted_idx--)
+    {
         memset(reconstructed_path, 0, MAX_PATH);
         char* ptr = reconstructed_path;
-        for (int j = 0; j < relative_path_to_mounted_idx; j++) {
+        for (int j = 0; j < relative_path_to_mounted_idx; j++)
+        {
             strcpy(ptr, parts[j]->part);
             ptr += strlen(parts[j]->part);
-            if (j < relative_path_to_mounted_idx - 1) {
+            if (j < relative_path_to_mounted_idx - 1)
+            {
                 *ptr = '/';
                 ptr++;
             }
         }
-        for (int idx = 0; idx < MAX_MOUNTED; idx++) {
-            if (mounted[idx] != 0) {
-                if (strlen(reconstructed_path) == strlen(mounted[idx]->filename) && strcmp(reconstructed_path, mounted[idx]->filename) == 0) {
-                    void *descriptor_private_data = mounted[idx]->fs->open(mounted[idx]->data, parts[relative_path_to_mounted_idx], fmode);
+        for (int idx = 0; idx < MAX_MOUNTED; idx++)
+        {
+            if (mounted[idx] != 0)
+            {
+                if (strlen(reconstructed_path) == strlen(mounted[idx]->filename) && strcmp(reconstructed_path, mounted[idx]->filename) == 0)
+                {
+                    void* descriptor_private_data = mounted[idx]->fs->open(mounted[idx]->data, parts[relative_path_to_mounted_idx], fmode);
 
                     assert(descriptor_private_data);
 
@@ -244,7 +251,7 @@ int fopen(const char* filename, const char* str_mode)
 
     result = -EINVARG;
 
-    out:
+out:
     kfree(reconstructed_path);
     kfree(parts);
     pathparser_free(root_path);
@@ -253,7 +260,7 @@ int fopen(const char* filename, const char* str_mode)
 
 /**
  * @brief Reads from file
- * 
+ *
  * @param ptr Output buffer
  * @param size Size in bytes of block
  * @param nmemb Number of blocks to read
@@ -267,7 +274,7 @@ int fread(void* ptr, uint32_t size, uint32_t nmemb, int fd)
 
     struct file_descriptor* desc = file_get_descriptor(fd);
 
-    return desc->filesystem->read(desc->private_fs, desc->private_fs_descriptor, size, nmemb, (char*) ptr);
+    return desc->filesystem->read(desc->private_fs, desc->private_fs_descriptor, size, nmemb, (char*)ptr);
 }
 
 /**
@@ -286,13 +293,12 @@ int fwrite(void* ptr, uint32_t size, uint32_t nmemb, int fd)
 
     struct file_descriptor* desc = file_get_descriptor(fd);
 
-    return desc->filesystem->write(desc->private_fs, desc->private_fs_descriptor, size, nmemb, (char*) ptr);
+    return desc->filesystem->write(desc->private_fs, desc->private_fs_descriptor, size, nmemb, (char*)ptr);
 }
-
 
 /**
  * @brief Seeks into file
- * 
+ *
  * @param fd File descriptor
  * @param offset Seek offset
  * @param whence File seek mode (SEEK_SET for absolute, SEEK_CUR for relative)
@@ -309,8 +315,8 @@ int fseek(int fd, int offset, FILE_SEEK_MODE whence)
 
 /**
  * @brief Returns file status
- * 
- * @param fd File descriptor 
+ *
+ * @param fd File descriptor
  * @param stat Output file status struct
  * @return int Status
  */
@@ -325,7 +331,7 @@ int fstat(int fd, struct file_stat* stat)
 
 /**
  * @brief Closes file descriptor
- * 
+ *
  * @param fd File descriptor
  * @return int Status
  */
@@ -340,13 +346,16 @@ int fclose(int fd)
     return res;
 }
 
-void mount(const char *filename, struct filesystem* fs, void* data) {
+void mount(const char* filename, struct filesystem* fs, void* data)
+{
     struct mounted_file* mf = kzalloc(sizeof(struct mounted_file));
     mf->fs = fs;
     mf->data = data;
     mf->filename = filename;
-    for (int idx = 0; idx < MAX_MOUNTED; idx++) {
-        if (mounted[idx] == 0) {
+    for (int idx = 0; idx < MAX_MOUNTED; idx++)
+    {
+        if (mounted[idx] == 0)
+        {
             mounted[idx] = mf;
             kdebug("[FS] Mounted %s pointing to %s at idx %d", filename, fs->name, idx);
             return;

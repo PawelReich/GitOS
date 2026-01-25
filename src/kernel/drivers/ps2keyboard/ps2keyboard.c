@@ -1,15 +1,14 @@
 #include "ps2keyboard.h"
-#include <stdint.h>
-#include <stddef.h>
 #include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
 #include <task/process.h>
 
 #include "common/io.h"
-#include "kernel.h"
-#include "idt/idt.h"
-#include "task/task.h"
-#include "kernel.h"
 #include "drivers/pic/pic.h"
+#include "idt/idt.h"
+#include "kernel.h"
+#include "task/task.h"
 
 static uint8_t ps2keyboard_scan_set_1[] = {
     0x00, 0x1B, '1', '2', '3', '4', '5',
@@ -17,7 +16,7 @@ static uint8_t ps2keyboard_scan_set_1[] = {
     0x08, '\t', 'Q', 'W', 'E', 'R', 'T',
     'Y', 'U', 'I', 'O', 'P', '[', ']',
     0x0d, 0x00, 'A', 'S', 'D', 'F', 'G',
-    'H', 'J', 'K', 'L', ';', '\'', '`', 
+    'H', 'J', 'K', 'L', ';', '\'', '`',
     0x00, '\\', 'Z', 'X', 'C', 'V', 'B',
     'N', 'M', ',', '.', '/', 0x00, '*',
     0x00, 0x20, 0x00, 0x00, 0x00, 0x00,
@@ -31,7 +30,7 @@ void ps2keyboard_irq_handler();
 int ps2keyboard_setup()
 {
     kprintf("Initializing PS2 Keyboard driver\r\n");
-    outb(0x64, 0xAE); // Enable first PS/2 port
+    outb(0x64, 0xAE);  // Enable first PS/2 port
 
     idt_SetHandler(0x21, ps2keyboard_irq_handler);
 
@@ -45,30 +44,52 @@ static bool ps2keyboard_shift = false;
 
 static char shift_char(char c)
 {
-    switch(c)
+    switch (c)
     {
-        case '1': return '!';
-        case '2': return '@';
-        case '3': return '#';
-        case '4': return '$';
-        case '5': return '%';
-        case '6': return '^';
-        case '7': return '&';
-        case '8': return '*';
-        case '9': return '(';
-        case '0': return ')';
-        case '-': return '_';
-        case '=': return '+';
-        case '[': return '{';
-        case ']': return '}';
-        case ';': return ':';
-        case '\'': return '"';
-        case '`': return '~';
-        case '\\': return '|';
-        case ',': return '<';
-        case '.': return '>';
-        case '/': return '?';
-        default:  return c;
+        case '1':
+            return '!';
+        case '2':
+            return '@';
+        case '3':
+            return '#';
+        case '4':
+            return '$';
+        case '5':
+            return '%';
+        case '6':
+            return '^';
+        case '7':
+            return '&';
+        case '8':
+            return '*';
+        case '9':
+            return '(';
+        case '0':
+            return ')';
+        case '-':
+            return '_';
+        case '=':
+            return '+';
+        case '[':
+            return '{';
+        case ']':
+            return '}';
+        case ';':
+            return ':';
+        case '\'':
+            return '"';
+        case '`':
+            return '~';
+        case '\\':
+            return '|';
+        case ',':
+            return '<';
+        case '.':
+            return '>';
+        case '/':
+            return '?';
+        default:
+            return c;
     }
 }
 
@@ -87,7 +108,8 @@ static char shift_char(char c)
     if (c >= 'A' && c <= 'Z' && !ps2keyboard_capslock)
         c += 32;
 
-    else if (ps2keyboard_shift) {
+    else if (ps2keyboard_shift)
+    {
         c = shift_char(c);
     }
 
@@ -99,7 +121,7 @@ void ps2keyboard_irq_handler()
     pic_EOI(0);
 
     uint8_t scancode = inb(0x60);
-    inb(0x60); // Ignore next byte
+    inb(0x60);  // Ignore next byte
 
     if (scancode == 0xAA || scancode == 0xB6)  // Left Shift release (0xAA) or Right Shift release (0xB6)
     {
@@ -107,7 +129,7 @@ void ps2keyboard_irq_handler()
         return;
     }
 
-    if (scancode & 0x80) //release
+    if (scancode & 0x80)  // release
     {
         return;
     }
@@ -118,7 +140,8 @@ void ps2keyboard_irq_handler()
         return;
     }
 
-    if (scancode == 0x3A) { //Capslock
+    if (scancode == 0x3A)
+    {  // Capslock
 
         ps2keyboard_capslock = !ps2keyboard_capslock;
         return;

@@ -1,0 +1,28 @@
+Language:        Cpp
+BasedOnStyle:    Google
+
+IndentWidth:     4
+TabWidth:        4
+UseTab:          Never
+
+BreakBeforeBraces: Allman
+AllowShortIfStatementsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortLoopsOnASingleLine: false
+
+PointerAlignment: Left
+
+AlignConsecutiveMacros: true
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignTrailingComments: true
+ColumnLimit: 0
+
+SortIncludes:    true
+IncludeBlocks:   Preserve
+
+Standard:        c++17
+SpaceBeforeCpp11BracedList: false
+Cpp11BracedListStyle: false
+
+SpaceAfterCStyleCast: false

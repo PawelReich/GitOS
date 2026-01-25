@@ -5,17 +5,17 @@
 
 struct idt_desc
 {
-    uint16_t offset_low; //Offset bits 0-15
+    uint16_t offset_low;  // Offset bits 0-15
     uint16_t selector;
     uint8_t zero;
-    uint8_t type_attr;   
-    uint16_t offset_high; //Offset bits 16-31
+    uint8_t type_attr;
+    uint16_t offset_high;  // Offset bits 16-31
 } __attribute__((packed));
 
 struct idtr_desc
 {
-    uint16_t limit; // Size of desc table - 1
-    uint32_t base; // Address of the desc table
+    uint16_t limit;  // Size of desc table - 1
+    uint32_t base;   // Address of the desc table
 } __attribute__((packed));
 
 struct interrupt_frame
@@ -36,11 +36,11 @@ struct interrupt_frame
     uint32_t ss;
 } __attribute__((packed));
 
-typedef void(*ISR_HANDLER)(int int_no, struct interrupt_frame* frame);
+typedef void (*ISR_HANDLER)(int int_no, struct interrupt_frame* frame);
 
 void idt_Init();
 void idt_SetDescriptor(int int_no, void* address);
 int idt_SetHandler(int int_no, ISR_HANDLER handler);
 void idt_Load();
 
-extern const char *idt_InterruptLayoutString[32];
+extern const char* idt_InterruptLayoutString[32];

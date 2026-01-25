@@ -8,23 +8,25 @@
 
 #pragma once
 
-class Bootloader {
+class Bootloader
+{
     friend class GitBoot;
     friend class Multiboot;
 
-    public:
-      virtual void init(uint32_t magic, void* info_ptr) = 0;
-      virtual ~Bootloader() = default;
-      static Bootloader* the() {
-          return m_bootloader;
-      };
+   public:
+    virtual void init(uint32_t magic, void* info_ptr) = 0;
+    virtual ~Bootloader() = default;
+    static Bootloader* the()
+    {
+        return m_bootloader;
+    };
 
-      virtual const char* get_cmdline() const = 0;
-      virtual const char* get_bootloader_name() const = 0;
+    virtual const char* get_cmdline() const = 0;
+    virtual const char* get_bootloader_name() const = 0;
 
-      virtual uint64_t get_heap_base_address() const = 0;
-      virtual uint64_t get_heap_size() const = 0;
+    virtual uint64_t get_heap_base_address() const = 0;
+    virtual uint64_t get_heap_size() const = 0;
 
-    private:
-        static Bootloader* m_bootloader;
+   private:
+    static Bootloader* m_bootloader;
 };

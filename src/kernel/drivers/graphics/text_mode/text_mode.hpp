@@ -2,8 +2,9 @@
 
 #include "drivers/graphics/graphics.hpp"
 
-class TextModeGraphics : public Graphics {
-public:
+class TextModeGraphics : public Graphics
+{
+   public:
     // Returns the singleton instance implementing Graphics
     static Graphics* the();
 
@@ -22,19 +23,19 @@ public:
     uint32_t get_cursor_y() override;
     TEXT_MODE_COLOR get_current_color() override;
 
-private:
+   private:
     // Helper function to convert a character + color into a 16-bit entry
     uint16_t make_char(char c, TEXT_MODE_COLOR color);
 
     // Scroll the screen by 'amount' lines
     void scroll_screen(int amount);
 
-public:
+   public:
     ~TextModeGraphics() override {};
 
-private:
+   private:
     // We assume 80x25 text mode
-    static constexpr int TEXT_MODE_WIDTH  = 80;
+    static constexpr int TEXT_MODE_WIDTH = 80;
     static constexpr int TEXT_MODE_HEIGHT = 25;
 
     // Pointer to the VGA text-mode buffer
