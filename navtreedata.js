@@ -25,6 +25,19 @@
 var NAVTREE =
 [
   [ "GitOS", "index.html", [
+    [ "Goals", "index.html#autotoc_md1", [
+      [ "Boot", "index.html#autotoc_md2", null ],
+      [ "Kernel", "index.html#autotoc_md3", [
+        [ "Drivers", "index.html#autotoc_md4", null ],
+        [ "Formats", "index.html#autotoc_md5", null ],
+        [ "Filesystem", "index.html#autotoc_md6", null ],
+        [ "Memory Management", "index.html#autotoc_md7", null ],
+        [ "Task Management", "index.html#autotoc_md8", null ],
+        [ "Syscalls", "index.html#autotoc_md9", null ]
+      ] ],
+      [ "Userland", "index.html#autotoc_md10", null ],
+      [ "Using:", "index.html#autotoc_md11", null ]
+    ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
@@ -58,10 +71,10 @@ var NAVTREEINDEX =
 "_b_m_p_file_8cpp.html",
 "class_memory_f_s.html#affd65a2c308fd043fa11902663034154",
 "functions_n.html",
-"kernel_2fs_2file_8h.html#a9e908e8845c02e0b0969b41a021310eb",
-"serial_8h.html#a3075177a835a79cef74988b314962e8e",
-"structmultiboot__tag__apm.html#a36a2211c50c4101850194fc32551e642",
-"syscall_8hpp.html#a01e111270f52e13b9d48a3829ffef89ba660120329dfa148fcc7207d7bde348ec"
+"kernel_2fs_2file_8h.html#a18ee81c05ed9a26a59ba7120220a2c96",
+"ps2keyboard_8h.html#a8ccc910489590ed0143e2fed529597f8",
+"structmultiboot__mmap__entry.html",
+"syscall_8hpp.html#a01e111270f52e13b9d48a3829ffef89b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

@@ -18,13 +18,14 @@ var searchData=
   ['bmpfile_2ecpp_15',['BMPFile.cpp',['../_b_m_p_file_8cpp.html',1,'']]],
   ['bmpfile_2ehpp_16',['BMPFile.hpp',['../_b_m_p_file_8hpp.html',1,'']]],
   ['bochsbreak_17',['BochsBreak',['../kernel_8h.html#aef9e7d5ae531e4004885f5a5cc002143',1,'kernel.h']]],
-  ['bootloader_2ecpp_18',['Bootloader.cpp',['../_bootloader_8cpp.html',1,'']]],
-  ['bootloader_2ehpp_19',['Bootloader.hpp',['../_bootloader_8hpp.html',1,'']]],
-  ['bpp_20',['bpp',['../struct_framebuffer_info.html#ac2987cad919bae7cfaa2b2a9122e5702',1,'FramebufferInfo::bpp'],['../_git_boot_8hpp.html#a496818f626ceb32365ca6cf57c991979',1,'bpp:&#160;GitBoot.hpp']]],
-  ['brown_21',['BROWN',['../class_graphics.html#aa7676c0e70481c4c65f2dae856a59deaa1fa14482e7e4dc1332ab8c9d995fe570',1,'Graphics']]],
-  ['bss_22',['bss',['../structprocess.html#a009caf8994b554dce7ae442ae4872046',1,'process']]],
-  ['bss_5fend_5faddr_23',['bss_end_addr',['../structmultiboot__header__tag__address.html#a327be9d90ed2722b0e275817f92e5a14',1,'multiboot_header_tag_address']]],
-  ['buffer_24',['buffer',['../struct_framebuffer_info.html#a74644aa51cc16278dbd041542e13afd0',1,'FramebufferInfo::buffer'],['../structprocess_1_1keyboard__buffer.html#ad48a4d77b3c053f592cd912834f45c60',1,'process::keyboard_buffer::buffer'],['../struct_framebuffer_info.html#a56ed84df35de10bdb65e72b184309497',1,'FramebufferInfo::buffer']]],
-  ['buttons_25',['buttons',['../struct_p_s2_mouse_1_1mouse__packet.html#a3201e5ae0a645e0390dd69ec1a5e5a4a',1,'PS2Mouse::mouse_packet::buttons'],['../structmouse__packet.html#a3201e5ae0a645e0390dd69ec1a5e5a4a',1,'mouse_packet::buttons']]],
-  ['bytes_5fper_5fsector_26',['bytes_per_sector',['../structfat16__header__primary.html#aad9aa4ff8c80f1bcb0ac03f23bb9701e',1,'fat16_header_primary::bytes_per_sector'],['../fat16_8h.html#aad9aa4ff8c80f1bcb0ac03f23bb9701e',1,'bytes_per_sector:&#160;fat16.h']]]
+  ['boot_18',['Boot',['../index.html#autotoc_md2',1,'']]],
+  ['bootloader_2ecpp_19',['Bootloader.cpp',['../_bootloader_8cpp.html',1,'']]],
+  ['bootloader_2ehpp_20',['Bootloader.hpp',['../_bootloader_8hpp.html',1,'']]],
+  ['bpp_21',['bpp',['../struct_framebuffer_info.html#ac2987cad919bae7cfaa2b2a9122e5702',1,'FramebufferInfo::bpp'],['../_git_boot_8hpp.html#a496818f626ceb32365ca6cf57c991979',1,'bpp:&#160;GitBoot.hpp']]],
+  ['brown_22',['BROWN',['../class_graphics.html#aa7676c0e70481c4c65f2dae856a59deaa1fa14482e7e4dc1332ab8c9d995fe570',1,'Graphics']]],
+  ['bss_23',['bss',['../structprocess.html#a009caf8994b554dce7ae442ae4872046',1,'process']]],
+  ['bss_5fend_5faddr_24',['bss_end_addr',['../structmultiboot__header__tag__address.html#a327be9d90ed2722b0e275817f92e5a14',1,'multiboot_header_tag_address']]],
+  ['buffer_25',['buffer',['../struct_framebuffer_info.html#a74644aa51cc16278dbd041542e13afd0',1,'FramebufferInfo::buffer'],['../structprocess_1_1keyboard__buffer.html#ad48a4d77b3c053f592cd912834f45c60',1,'process::keyboard_buffer::buffer'],['../struct_framebuffer_info.html#a56ed84df35de10bdb65e72b184309497',1,'FramebufferInfo::buffer']]],
+  ['buttons_26',['buttons',['../struct_p_s2_mouse_1_1mouse__packet.html#a3201e5ae0a645e0390dd69ec1a5e5a4a',1,'PS2Mouse::mouse_packet::buttons'],['../structmouse__packet.html#a3201e5ae0a645e0390dd69ec1a5e5a4a',1,'mouse_packet::buttons']]],
+  ['bytes_5fper_5fsector_27',['bytes_per_sector',['../structfat16__header__primary.html#aad9aa4ff8c80f1bcb0ac03f23bb9701e',1,'fat16_header_primary::bytes_per_sector'],['../fat16_8h.html#aad9aa4ff8c80f1bcb0ac03f23bb9701e',1,'bytes_per_sector:&#160;fat16.h']]]
 ];

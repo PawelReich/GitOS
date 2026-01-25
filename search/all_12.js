@@ -114,6 +114,7 @@ var searchData=
   ['syscall_5fputchar_111',['SYSCALL_PUTCHAR',['../syscall_8hpp.html#a01e111270f52e13b9d48a3829ffef89ba639c4e2053c1b258b3fc62f20e066512',1,'syscall.hpp']]],
   ['syscall_5fputstring_112',['SYSCALL_PUTSTRING',['../syscall_8hpp.html#a01e111270f52e13b9d48a3829ffef89ba21054fd193dc32963c6cd48f505bbc4c',1,'syscall.hpp']]],
   ['syscall_5fwrapper_113',['syscall_wrapper',['../syscall_8hpp.html#a441be2490fb42a2eba6c201a42259075',1,'syscall.hpp']]],
-  ['syscalls_114',['syscalls',['../syscall_8hpp.html#a01e111270f52e13b9d48a3829ffef89b',1,'syscall.hpp']]],
-  ['system_5fid_5fstring_115',['system_id_string',['../structfat16__header__extended.html#a8fcec6205e995a2ef6c0422d35e36c30',1,'fat16_header_extended::system_id_string'],['../fat16_8h.html#a8fcec6205e995a2ef6c0422d35e36c30',1,'system_id_string:&#160;fat16.h']]]
+  ['syscalls_114',['Syscalls',['../index.html#autotoc_md9',1,'']]],
+  ['syscalls_115',['syscalls',['../syscall_8hpp.html#a01e111270f52e13b9d48a3829ffef89b',1,'syscall.hpp']]],
+  ['system_5fid_5fstring_116',['system_id_string',['../structfat16__header__extended.html#a8fcec6205e995a2ef6c0422d35e36c30',1,'fat16_header_extended::system_id_string'],['../fat16_8h.html#a8fcec6205e995a2ef6c0422d35e36c30',1,'system_id_string:&#160;fat16.h']]]
 ];
