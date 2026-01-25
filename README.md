@@ -65,7 +65,7 @@ My personal graphical operating system project
 - [ ] Debugging userland applications
 
 
-(Automated) documentation for this project can be found [Here](https://gitmanik.github.io/GitOS/files.html)
+(Automated) documentation for this project can be found [Here](https://PawelReich.github.io/GitOS)
 
 
 ### Using:
