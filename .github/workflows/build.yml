@@ -1,0 +1,74 @@
+name: Build OS
+
+on: [push, pull_request]
+
+env:
+  PREFIX: /home/runner/cross
+  TARGET: i686-elf
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 1. Restore Toolchain from Cache
+      - name: Cache Toolchain
+        id: cache-toolchain
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.PREFIX }}
+          key: ${{ runner.os }}-toolchain-gcc10-${{ env.TARGET }}
+
+      # 2. Install Build Dependencies (Required every run)
+      - name: Install Cross-Compiler dependencies
+        if: steps.cache-toolchain.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential bison flex libgmp3-dev \
+            libmpc-dev libmpfr-dev texinfo libisl-dev wget make \
+            libncurses-dev nasm
+
+      # 3. Build Toolchain (Only if cache miss)
+      # This is a condensed version of your Dockerfile RUN commands
+      - name: Build Cross-Compiler
+        if: steps.cache-toolchain.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ${{ env.PREFIX }}
+          # Download sources
+          wget https://ftp.gnu.org/gnu/binutils/binutils-2.39.tar.xz
+          wget https://ftp.gnu.org/gnu/gcc/gcc-10.4.0/gcc-10.4.0.tar.xz
+          tar -xf binutils-2.39.tar.xz
+          tar -xf gcc-10.4.0.tar.xz
+          
+          # Build Binutils
+          mkdir build-binutils && cd build-binutils
+          ../binutils-2.39/configure --target=${{ env.TARGET }} --prefix="${{ env.PREFIX }}" --with-sysroot --disable-nls --disable-werror
+          make -j$(nproc)
+          make install
+          cd ..
+          
+          # Build GCC
+          mkdir build-gcc && cd build-gcc
+          ../gcc-10.4.0/configure --target=${{ env.TARGET }} --prefix="${{ env.PREFIX }}" --disable-nls --enable-languages=c,c++ --without-headers
+          make -j$(nproc) all-gcc
+          make -j$(nproc) all-target-libgcc
+          make install-gcc
+          make install-target-libgcc
+
+      - name: Install build dependencies
+        run: sudo apt-get install -y nasm
+
+      # 4. Build Project
+      - name: Build GitOS
+        run: |
+          export PATH="${{ env.PREFIX }}/bin:$PATH"
+          cmake -S . -B build
+          cmake --build build -- gitboot
+
+      - name: Upload disk.bin
+        uses: actions/upload-artifact@v4
+        with:
+          name: disk-image
+          path: build/disk.bin

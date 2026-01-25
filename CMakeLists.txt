@@ -9,7 +9,7 @@ cmake_minimum_required(VERSION 3.16)
 project(GitOS C CXX ASM)
 
 # Set the cross-compiler tools
-set(TOOLS_DIR "/opt/cross/bin")
+set(TOOLS_DIR "/home/runner/cross/bin")
 set(TARGET "i686-elf")
 set(CMAKE_C_COMPILER "${TOOLS_DIR}/${TARGET}-gcc")
 set(CMAKE_CXX_COMPILER "${TOOLS_DIR}/${TARGET}-g++")
