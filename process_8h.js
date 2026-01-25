@@ -1,7 +1,7 @@
 var process_8h =
 [
     [ "process", "structprocess.html", "structprocess" ],
-    [ "keyboard_buffer", "structprocess_1_1keyboard__buffer.html", "structprocess_1_1keyboard__buffer" ],
+    [ "process::keyboard_buffer", "structprocess_1_1keyboard__buffer.html", "structprocess_1_1keyboard__buffer" ],
     [ "MAX_PROCESSES", "process_8h.html#a92fd8bb5807bf6abb640686f51e5df3e", null ],
     [ "PROCESS_KEYBOARD_BUFFER_SIZE", "process_8h.html#a19b5a6036a80fdec911d063961b757ac", null ],
     [ "PROCESS_MAX_ALLOCATIONS", "process_8h.html#a881944a5d64fd9c67c2dd17332f0bff2", null ],

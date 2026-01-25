@@ -8,5 +8,5 @@ var searchData=
   ['enomem_5',['ENOMEM',['../status_8h.html#a6a05c923dad0c1208043e9c20a58c8e5',1,'status.h']]],
   ['enotimpl_6',['ENOTIMPL',['../status_8h.html#a0e9e819f6f5a649e0dcb3e7d00c54e91',1,'status.h']]],
   ['error_7',['ERROR',['../status_8h.html#a9d59f12a576147f4e1564e3fa76b5077',1,'status.h']]],
-  ['error_5fi_8',['error_i',['../status_8h.html#a38e167bf6deb15344b87b76e432ca1c2',1,'ERROR_I:&#160;status.h'],['../serial_8c.html#a38e167bf6deb15344b87b76e432ca1c2',1,'ERROR_I:&#160;serial.c']]]
+  ['error_5fi_8',['ERROR_I',['../status_8h.html#a38e167bf6deb15344b87b76e432ca1c2',1,'status.h']]]
 ];

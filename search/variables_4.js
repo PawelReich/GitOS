@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['data_0',['data',['../structwindow__message__framebuffer__data.html#abe222f6d3581e7920dcad5306cc906a8',1,'window_message_framebuffer_data::data'],['../structmounted__file.html#a735984d41155bc1032e09bece8f8d66d',1,'mounted_file::data'],['../window_8h.html#abe222f6d3581e7920dcad5306cc906a8',1,'data:&#160;window.h']]],
+  ['data_0',['data',['../structmounted__file.html#a735984d41155bc1032e09bece8f8d66d',1,'mounted_file::data'],['../structwindow__message__framebuffer__data.html#abe222f6d3581e7920dcad5306cc906a8',1,'window_message_framebuffer_data::data'],['../window_8h.html#abe222f6d3581e7920dcad5306cc906a8',1,'data:&#160;window.h']]],
   ['depth_1',['depth',['../structmultiboot__header__tag__framebuffer.html#ad6af53159505aaabfc46a65b6f87447c',1,'multiboot_header_tag_framebuffer']]],
   ['descr_5fsize_2',['descr_size',['../structmultiboot__tag__efi__mmap.html#a50da8aae83e250c68d1e381c1293f91a',1,'multiboot_tag_efi_mmap']]],
   ['descr_5fvers_3',['descr_vers',['../structmultiboot__tag__efi__mmap.html#ab4232fbf0b7749b3025cc644e79b9096',1,'multiboot_tag_efi_mmap']]],

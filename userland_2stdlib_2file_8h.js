@@ -1,9 +1,6 @@
 var userland_2stdlib_2file_8h =
 [
     [ "file_stat", "structfile__stat.html", "structfile__stat" ],
-    [ "FILE_MODE", "userland_2stdlib_2file_8h.html#a83452b48fc3d8fdbc81f52de7217fa68", null ],
-    [ "FILE_SEEK_MODE", "userland_2stdlib_2file_8h.html#abe921a3b588578250cc96f01a96953ab", null ],
-    [ "FILE_STAT_FLAGS", "userland_2stdlib_2file_8h.html#a28336e6c2f5eea087e30e2177a7ea5a0", null ],
     [ "FILE_OPEN_MODES", "userland_2stdlib_2file_8h.html#ad62aa6bebe0d9e00b2fc07f6f625e682", [
       [ "FILE_MODE_READ", "userland_2stdlib_2file_8h.html#ad62aa6bebe0d9e00b2fc07f6f625e682a89cf567f3e692c97873d7a795c17feca", null ],
       [ "FILE_MODE_WRITE", "userland_2stdlib_2file_8h.html#ad62aa6bebe0d9e00b2fc07f6f625e682a12eb77a5f1206154eb9f5adc219c9d5b", null ],

@@ -1,7 +1,7 @@
 var hierarchy =
 [
     [ "BMPFile", "class_b_m_p_file.html", null ],
-    [ "Bootloader", "class_bootloader.html", [
+    [ "Bootloader", null, [
       [ "GitBoot", "class_git_boot.html", null ],
       [ "Multiboot", "class_multiboot.html", null ]
     ] ],
@@ -14,7 +14,7 @@ var hierarchy =
     [ "fat_file", "structfat__file.html", null ],
     [ "fat_file_descriptor", "structfat__file__descriptor.html", null ],
     [ "fat_header", "structfat__header.html", null ],
-    [ "fat_header_extended", "unionfat__header_1_1fat__header__extended.html", null ],
+    [ "fat_header::fat_header_extended", "unionfat__header_1_1fat__header__extended.html", null ],
     [ "fat_header_extended", "unionfat__header__extended.html", null ],
     [ "fat_item", "structfat__item.html", null ],
     [ "fat_private", "structfat__private.html", null ],
@@ -35,12 +35,12 @@ var hierarchy =
     [ "idt_desc", "structidt__desc.html", null ],
     [ "idtr_desc", "structidtr__desc.html", null ],
     [ "interrupt_frame", "structinterrupt__frame.html", null ],
-    [ "keyboard_buffer", "structprocess_1_1keyboard__buffer.html", null ],
+    [ "process::keyboard_buffer", "structprocess_1_1keyboard__buffer.html", null ],
     [ "MemoryFS", "class_memory_f_s.html", null ],
     [ "mounted_file", "structmounted__file.html", null ],
     [ "mouse_packet", "structmouse__packet.html", null ],
-    [ "mouse_packet", "struct_p_s2_mouse_1_1mouse__packet.html", null ],
-    [ "multiboot2_header", "struct_multiboot_1_1multiboot2__header.html", null ],
+    [ "PS2Mouse::mouse_packet", "struct_p_s2_mouse_1_1mouse__packet.html", null ],
+    [ "Multiboot::multiboot2_header", "struct_multiboot_1_1multiboot2__header.html", null ],
     [ "multiboot_color", "structmultiboot__color.html", null ],
     [ "multiboot_header", "structmultiboot__header.html", null ],
     [ "multiboot_header_tag", "structmultiboot__header__tag.html", null ],

@@ -2,7 +2,7 @@ var searchData=
 [
   ['memoryfs_0',['MemoryFS',['../class_memory_f_s.html',1,'']]],
   ['mounted_5ffile_1',['mounted_file',['../structmounted__file.html',1,'']]],
-  ['mouse_5fpacket_2',['mouse_packet',['../struct_p_s2_mouse_1_1mouse__packet.html',1,'PS2Mouse::mouse_packet'],['../structmouse__packet.html',1,'mouse_packet']]],
+  ['mouse_5fpacket_2',['mouse_packet',['../structmouse__packet.html',1,'mouse_packet'],['../struct_p_s2_mouse_1_1mouse__packet.html',1,'PS2Mouse::mouse_packet']]],
   ['multiboot_3',['Multiboot',['../class_multiboot.html',1,'']]],
   ['multiboot2_5fheader_4',['multiboot2_header',['../struct_multiboot_1_1multiboot2__header.html',1,'Multiboot']]],
   ['multiboot_5fcolor_5',['multiboot_color',['../structmultiboot__color.html',1,'']]],

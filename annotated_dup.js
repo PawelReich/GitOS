@@ -1,7 +1,6 @@
 var annotated_dup =
 [
     [ "BMPFile", "class_b_m_p_file.html", "class_b_m_p_file" ],
-    [ "Bootloader", "class_bootloader.html", "class_bootloader" ],
     [ "disk", "structdisk.html", "structdisk" ],
     [ "disk_stream", "structdisk__stream.html", "structdisk__stream" ],
     [ "ELFFile", "class_e_l_f_file.html", "class_e_l_f_file" ],

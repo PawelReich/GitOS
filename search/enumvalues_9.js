@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['seek_5fcur_0',['seek_cur',['../userland_2stdlib_2file_8h.html#a01c4b716d86207ae5aa4d335b9749bb8af3091144c125782cf17bcd3eb84e454c',1,'SEEK_CUR:&#160;file.h'],['../kernel_2fs_2file_8h.html#a01c4b716d86207ae5aa4d335b9749bb8af3091144c125782cf17bcd3eb84e454c',1,'SEEK_CUR:&#160;file.h']]],
-  ['seek_5fend_1',['seek_end',['../userland_2stdlib_2file_8h.html#a01c4b716d86207ae5aa4d335b9749bb8a060e45245be703e272d7264bafcfdc63',1,'SEEK_END:&#160;file.h'],['../kernel_2fs_2file_8h.html#a01c4b716d86207ae5aa4d335b9749bb8a060e45245be703e272d7264bafcfdc63',1,'SEEK_END:&#160;file.h']]],
-  ['seek_5fset_2',['seek_set',['../userland_2stdlib_2file_8h.html#a01c4b716d86207ae5aa4d335b9749bb8a7f53e3798ec48e79c0897ba5138f9b05',1,'SEEK_SET:&#160;file.h'],['../kernel_2fs_2file_8h.html#a01c4b716d86207ae5aa4d335b9749bb8a7f53e3798ec48e79c0897ba5138f9b05',1,'SEEK_SET:&#160;file.h']]],
+  ['seek_5fcur_0',['SEEK_CUR',['../kernel_2fs_2file_8h.html#a01c4b716d86207ae5aa4d335b9749bb8af3091144c125782cf17bcd3eb84e454c',1,'SEEK_CUR:&#160;file.h'],['../userland_2stdlib_2file_8h.html#a01c4b716d86207ae5aa4d335b9749bb8af3091144c125782cf17bcd3eb84e454c',1,'SEEK_CUR:&#160;file.h']]],
+  ['seek_5fend_1',['SEEK_END',['../kernel_2fs_2file_8h.html#a01c4b716d86207ae5aa4d335b9749bb8a060e45245be703e272d7264bafcfdc63',1,'SEEK_END:&#160;file.h'],['../userland_2stdlib_2file_8h.html#a01c4b716d86207ae5aa4d335b9749bb8a060e45245be703e272d7264bafcfdc63',1,'SEEK_END:&#160;file.h']]],
+  ['seek_5fset_2',['SEEK_SET',['../kernel_2fs_2file_8h.html#a01c4b716d86207ae5aa4d335b9749bb8a7f53e3798ec48e79c0897ba5138f9b05',1,'SEEK_SET:&#160;file.h'],['../userland_2stdlib_2file_8h.html#a01c4b716d86207ae5aa4d335b9749bb8a7f53e3798ec48e79c0897ba5138f9b05',1,'SEEK_SET:&#160;file.h']]],
   ['set_5fsize_3',['SET_SIZE',['../window_8h.html#a4291b0e699ffa39a20f699621733a443aa0f9eef5276e6a060f80305df0719015',1,'window.h']]],
   ['sht_5fdynamic_4',['SHT_DYNAMIC',['../class_e_l_f_file.html#a50a2d4dba0b4f0a84bcae40def21ddf9aee5c1c09db41a75bc36a395361b4dc5a',1,'ELFFile']]],
   ['sht_5fdynsym_5',['SHT_DYNSYM',['../class_e_l_f_file.html#a50a2d4dba0b4f0a84bcae40def21ddf9ac55e7aa6639ecf06ef2714fac7de7bd8',1,'ELFFile']]],

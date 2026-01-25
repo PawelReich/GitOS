@@ -3,7 +3,7 @@ var fat16_8h =
     [ "fat16_header_primary", "structfat16__header__primary.html", "structfat16__header__primary" ],
     [ "fat16_header_extended", "structfat16__header__extended.html", "structfat16__header__extended" ],
     [ "fat_header", "structfat__header.html", "structfat__header" ],
-    [ "fat_header_extended", "unionfat__header_1_1fat__header__extended.html", "unionfat__header_1_1fat__header__extended" ],
+    [ "fat_header::fat_header_extended", "unionfat__header_1_1fat__header__extended.html", "unionfat__header_1_1fat__header__extended" ],
     [ "fat_header_extended", "unionfat__header__extended.html", "unionfat__header__extended" ],
     [ "fat_file", "structfat__file.html", "structfat__file" ],
     [ "fat_directory", "structfat__directory.html", "structfat__directory" ],

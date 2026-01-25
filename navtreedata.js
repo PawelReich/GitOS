@@ -35,8 +35,7 @@ var NAVTREE =
         [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
-        [ "Enumerator", "functions_eval.html", null ],
-        [ "Related Symbols", "functions_rela.html", null ]
+        [ "Enumerator", "functions_eval.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -57,13 +56,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_b_m_p_file_8cpp.html",
-"class_graphics.html#adaa07a7be639adbd579e7a244fa1ee92",
-"functions_f.html",
-"kernel_2fs_2file_8h.html#a18ee81c05ed9a26a59ba7120220a2c96",
-"ps2keyboard_8h.html#a8ccc910489590ed0143e2fed529597f8",
-"structmultiboot__header__tag__relocatable.html#af0552a5d8b097b976e4b9988b5ed9d5a",
-"syscall_8hpp.html"
+"class_memory_f_s.html#affd65a2c308fd043fa11902663034154",
+"functions_n.html",
+"kernel_2fs_2file_8h.html#a9e908e8845c02e0b0969b41a021310eb",
+"serial_8h.html#a3075177a835a79cef74988b314962e8e",
+"structmultiboot__tag__apm.html#a36a2211c50c4101850194fc32551e642",
+"syscall_8hpp.html#a01e111270f52e13b9d48a3829ffef89ba660120329dfa148fcc7207d7bde348ec"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'click to disable panel synchronization';
+var SYNCOFFMSG = 'click to enable panel synchronization';
+var LISTOFALLMEMBERS = 'List of all members';

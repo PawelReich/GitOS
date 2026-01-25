@@ -1,16 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"kernel_2fs_2file_8h.html#a18ee81c05ed9a26a59ba7120220a2c96":[1,0,0,0,4,4,30],
-"kernel_2fs_2file_8h.html#a28336e6c2f5eea087e30e2177a7ea5a0":[1,0,0,0,4,4,10],
-"kernel_2fs_2file_8h.html#a4afef177a56ef89821691c7c4df374c3":[1,0,0,0,4,4,27],
-"kernel_2fs_2file_8h.html#a5177ed95ade641b7961a793a5122f76d":[1,0,0,0,4,4,11],
-"kernel_2fs_2file_8h.html#a575cfdaca3a77c3f910df16d56d7240c":[1,0,0,0,4,4,21],
-"kernel_2fs_2file_8h.html#a5cddfba3e55d068419e7206b9fa8b2e0":[1,0,0,0,4,4,13],
-"kernel_2fs_2file_8h.html#a5e3192feef8941c44511f3a15af4b9f7":[1,0,0,0,4,4,29],
-"kernel_2fs_2file_8h.html#a612a9429f9cd818ba4e5b4ce78e24e5f":[1,0,0,0,4,4,17],
-"kernel_2fs_2file_8h.html#a64056ef2a3bd065ebe747f58b26f167c":[1,0,0,0,4,4,26],
-"kernel_2fs_2file_8h.html#a727711f4e8697e13e8a9304ccf9085af":[1,0,0,0,4,4,12],
-"kernel_2fs_2file_8h.html#a83452b48fc3d8fdbc81f52de7217fa68":[1,0,0,0,4,4,8],
 "kernel_2fs_2file_8h.html#a9e908e8845c02e0b0969b41a021310eb":[1,0,0,0,4,4,4],
 "kernel_2fs_2file_8h.html#aa01c104dbdab4c93c40a96f0c705a3e1":[1,0,0,0,4,4,22],
 "kernel_2fs_2file_8h.html#ab5fa8fcf1f69d9baa73d8e74beb2ff40":[1,0,0,0,4,4,15],
@@ -249,5 +238,16 @@ var NAVTREEINDEX3 =
 "ps2keyboard_8c.html":[1,0,0,0,2,3,0],
 "ps2keyboard_8c.html#a6acef13060f97ef2f1e52e614203a5ec":[1,0,0,0,2,3,0,0],
 "ps2keyboard_8c.html#a8ccc910489590ed0143e2fed529597f8":[1,0,0,0,2,3,0,1],
-"ps2keyboard_8h.html":[1,0,0,0,2,3,1]
+"ps2keyboard_8h.html":[1,0,0,0,2,3,1],
+"ps2keyboard_8h.html#a8ccc910489590ed0143e2fed529597f8":[1,0,0,0,2,3,1,0],
+"ps2keyboard_8h_source.html":[1,0,0,0,2,3,1],
+"serial_8c.html":[1,0,0,0,2,5,0],
+"serial_8c.html#a3075177a835a79cef74988b314962e8e":[1,0,0,0,2,5,0,3],
+"serial_8c.html#a4c091f828571492ebd73ebf301658a9c":[1,0,0,0,2,5,0,2],
+"serial_8c.html#a6b98595090e689060d67fba97affb7cb":[1,0,0,0,2,5,0,0],
+"serial_8c.html#ac9011a61b118037e17b6ab74473c3e55":[1,0,0,0,2,5,0,5],
+"serial_8c.html#ae89a8b98ece5c499d9e83c04bc4abc2f":[1,0,0,0,2,5,0,1],
+"serial_8c.html#af6f4a2fbaca6f1ec3a1eca9e5be1d64e":[1,0,0,0,2,5,0,4],
+"serial_8h.html":[1,0,0,0,2,5,1],
+"serial_8h.html#a00dbb3ab1c59e14699be9393693e2248":[1,0,0,0,2,5,1,0]
 };
