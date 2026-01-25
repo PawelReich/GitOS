@@ -100,51 +100,53 @@ $(function(){initNavTree('_b_m_p_file_8hpp_source.html','',''); });
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="_b_m_p_file_8hpp.html#aa379ffab5097352ba49ec9358c38cf4e">    5</a></span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="_b_m_p_file_8hpp.html#a42539ea8650b094f66be7a689243c5ef">    6</a></span><span class="preprocessor">#include &lt;stdint-gcc.h&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="_b_m_p_file_8hpp.html#a21a22d56458392fa1e5c6d79364d4b0a">    7</a></span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="_b_m_p_file_8hpp.html#aab7418e1e07a89c9777aaee805fb4d67">    8</a></span><span class="keyword">class </span><a class="code hl_function" href="class_b_m_p_file.html#a66e3e8e5c1e850d86ca79456eb9a56bf">BMPFile</a> {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="_b_m_p_file_8hpp.html#af55654ffbb622bafcd05adde9d12fc81">    9</a></span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="_b_m_p_file_8hpp.html#a6bfaf07214c4bb55c4b702a72194a123">   10</a></span>        <a class="code hl_function" href="class_b_m_p_file.html#a66e3e8e5c1e850d86ca79456eb9a56bf">BMPFile</a>(uint8_t* <a class="code hl_variable" href="window_8h.html#abe222f6d3581e7920dcad5306cc906a8">data</a>, uint32_t sz);</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="class_b_m_p_file.html#a24ebf345b5a4b553bf7ed24d65cccad7">has_color_table</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        <span class="keyword">const</span> uint32_t* <a class="code hl_function" href="class_b_m_p_file.html#a5d594dba5af80c049f0ab7b7b016b787">get_raster</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        uint32_t <a class="code hl_function" href="class_b_m_p_file.html#ac3a320d8a85a66e75e198cc58b484e30">get_pixel</a>(uint32_t x, uint32_t y) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        uint32_t <a class="code hl_function" href="class_b_m_p_file.html#a755b78350834eeec9f4bb2c5499f5c9a">get_width</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        uint32_t <a class="code hl_function" href="class_b_m_p_file.html#af7b468efba2b36847bbcb1515ba7cc35">get_height</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">struct </span>BITMAPFILEHEADER {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keywordtype">char</span> <a class="code hl_variable" href="fat16_8h.html#af27e6d4ea3add14cd8cc9aa275d716ad">signature</a>[2];</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        uint32_t <a class="code hl_variable" href="_b_m_p_file_8hpp.html#acfc905fb689f590842c0152e3b8cd92e">file_size</a>;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        uint32_t <a class="code hl_variable" href="fat16_8h.html#acb7bc06bed6f6408d719334fc41698c7">reserved</a>;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        uint32_t <a class="code hl_variable" href="_b_m_p_file_8hpp.html#a894bdfa2d603d8343f8ef01dda6fcd23">offset</a>;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    } <a class="code hl_variable" href="fat16_8h.html#a3e6324cfedfcdd94098822c33bb97492">__attribute__</a>((__packed__));</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">struct </span>BITMAPINFOHEADER {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        uint32_t size;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        uint32_t width;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        uint32_t height;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        uint16_t planes;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        uint16_t bit_count;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        uint32_t compression;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        uint32_t image_size;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        uint32_t x_pixels_per_meter;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        uint32_t y_pixels_per_meter;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        uint32_t colors_used;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        uint32_t colors_important;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    } <a class="code hl_variable" href="fat16_8h.html#a3e6324cfedfcdd94098822c33bb97492">__attribute__</a>((__packed__));</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">const</span> BITMAPFILEHEADER* m_file_header;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">const</span> BITMAPINFOHEADER* m_info_header;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">const</span> uint32_t* m_color_table;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">const</span> uint32_t* m_raster_data;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="_b_m_p_file_8hpp.html#aab7418e1e07a89c9777aaee805fb4d67">    8</a></span><span class="keyword">class </span><a class="code hl_function" href="class_b_m_p_file.html#a66e3e8e5c1e850d86ca79456eb9a56bf">BMPFile</a></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="_b_m_p_file_8hpp.html#af55654ffbb622bafcd05adde9d12fc81">    9</a></span>{</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="_b_m_p_file_8hpp.html#a6bfaf07214c4bb55c4b702a72194a123">   10</a></span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_function" href="class_b_m_p_file.html#a66e3e8e5c1e850d86ca79456eb9a56bf">BMPFile</a>(uint8_t* <a class="code hl_variable" href="window_8h.html#abe222f6d3581e7920dcad5306cc906a8">data</a>, uint32_t sz);</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_b_m_p_file.html#a24ebf345b5a4b553bf7ed24d65cccad7">has_color_table</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">const</span> uint32_t* <a class="code hl_function" href="class_b_m_p_file.html#a5d594dba5af80c049f0ab7b7b016b787">get_raster</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    uint32_t <a class="code hl_function" href="class_b_m_p_file.html#ac3a320d8a85a66e75e198cc58b484e30">get_pixel</a>(uint32_t x, uint32_t y) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    uint32_t <a class="code hl_function" href="class_b_m_p_file.html#a755b78350834eeec9f4bb2c5499f5c9a">get_width</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    uint32_t <a class="code hl_function" href="class_b_m_p_file.html#af7b468efba2b36847bbcb1515ba7cc35">get_height</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">struct </span>BITMAPFILEHEADER</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keywordtype">char</span> <a class="code hl_variable" href="fat16_8h.html#af27e6d4ea3add14cd8cc9aa275d716ad">signature</a>[2];</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        uint32_t <a class="code hl_variable" href="_b_m_p_file_8hpp.html#acfc905fb689f590842c0152e3b8cd92e">file_size</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        uint32_t <a class="code hl_variable" href="fat16_8h.html#acb7bc06bed6f6408d719334fc41698c7">reserved</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        uint32_t <a class="code hl_variable" href="_b_m_p_file_8hpp.html#a894bdfa2d603d8343f8ef01dda6fcd23">offset</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    } <a class="code hl_variable" href="fat16_8h.html#a3e6324cfedfcdd94098822c33bb97492">__attribute__</a>((__packed__));</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">struct </span>BITMAPINFOHEADER</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        uint32_t size;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        uint32_t width;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        uint32_t height;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        uint16_t planes;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        uint16_t bit_count;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        uint32_t compression;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        uint32_t image_size;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        uint32_t x_pixels_per_meter;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        uint32_t y_pixels_per_meter;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        uint32_t colors_used;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        uint32_t colors_important;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    } <a class="code hl_variable" href="fat16_8h.html#a3e6324cfedfcdd94098822c33bb97492">__attribute__</a>((__packed__));</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">const</span> BITMAPFILEHEADER* m_file_header;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">const</span> BITMAPINFOHEADER* m_info_header;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">const</span> uint32_t* m_color_table;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">const</span> uint32_t* m_raster_data;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
 <div class="ttc" id="a_b_m_p_file_8hpp_html_a894bdfa2d603d8343f8ef01dda6fcd23"><div class="ttname"><a href="_b_m_p_file_8hpp.html#a894bdfa2d603d8343f8ef01dda6fcd23">offset</a></div><div class="ttdeci">uint32_t offset</div><div class="ttdef"><b>Definition</b> BMPFile.hpp:3</div></div>
 <div class="ttc" id="a_b_m_p_file_8hpp_html_acfc905fb689f590842c0152e3b8cd92e"><div class="ttname"><a href="_b_m_p_file_8hpp.html#acfc905fb689f590842c0152e3b8cd92e">file_size</a></div><div class="ttdeci">uint32_t file_size</div><div class="ttdef"><b>Definition</b> BMPFile.hpp:1</div></div>
-<div class="ttc" id="aclass_b_m_p_file_html_a24ebf345b5a4b553bf7ed24d65cccad7"><div class="ttname"><a href="class_b_m_p_file.html#a24ebf345b5a4b553bf7ed24d65cccad7">BMPFile::has_color_table</a></div><div class="ttdeci">bool has_color_table() const</div><div class="ttdef"><b>Definition</b> BMPFile.cpp:50</div></div>
-<div class="ttc" id="aclass_b_m_p_file_html_a5d594dba5af80c049f0ab7b7b016b787"><div class="ttname"><a href="class_b_m_p_file.html#a5d594dba5af80c049f0ab7b7b016b787">BMPFile::get_raster</a></div><div class="ttdeci">const uint32_t * get_raster() const</div><div class="ttdef"><b>Definition</b> BMPFile.cpp:54</div></div>
-<div class="ttc" id="aclass_b_m_p_file_html_a66e3e8e5c1e850d86ca79456eb9a56bf"><div class="ttname"><a href="class_b_m_p_file.html#a66e3e8e5c1e850d86ca79456eb9a56bf">BMPFile::BMPFile</a></div><div class="ttdeci">BMPFile(uint8_t *data, uint32_t sz)</div><div class="ttdef"><b>Definition</b> BMPFile.cpp:12</div></div>
-<div class="ttc" id="aclass_b_m_p_file_html_a755b78350834eeec9f4bb2c5499f5c9a"><div class="ttname"><a href="class_b_m_p_file.html#a755b78350834eeec9f4bb2c5499f5c9a">BMPFile::get_width</a></div><div class="ttdeci">uint32_t get_width() const</div><div class="ttdef"><b>Definition</b> BMPFile.cpp:85</div></div>
-<div class="ttc" id="aclass_b_m_p_file_html_ac3a320d8a85a66e75e198cc58b484e30"><div class="ttname"><a href="class_b_m_p_file.html#ac3a320d8a85a66e75e198cc58b484e30">BMPFile::get_pixel</a></div><div class="ttdeci">uint32_t get_pixel(uint32_t x, uint32_t y) const</div><div class="ttdef"><b>Definition</b> BMPFile.cpp:58</div></div>
-<div class="ttc" id="aclass_b_m_p_file_html_af7b468efba2b36847bbcb1515ba7cc35"><div class="ttname"><a href="class_b_m_p_file.html#af7b468efba2b36847bbcb1515ba7cc35">BMPFile::get_height</a></div><div class="ttdeci">uint32_t get_height() const</div><div class="ttdef"><b>Definition</b> BMPFile.cpp:89</div></div>
+<div class="ttc" id="aclass_b_m_p_file_html_a24ebf345b5a4b553bf7ed24d65cccad7"><div class="ttname"><a href="class_b_m_p_file.html#a24ebf345b5a4b553bf7ed24d65cccad7">BMPFile::has_color_table</a></div><div class="ttdeci">bool has_color_table() const</div><div class="ttdef"><b>Definition</b> BMPFile.cpp:56</div></div>
+<div class="ttc" id="aclass_b_m_p_file_html_a5d594dba5af80c049f0ab7b7b016b787"><div class="ttname"><a href="class_b_m_p_file.html#a5d594dba5af80c049f0ab7b7b016b787">BMPFile::get_raster</a></div><div class="ttdeci">const uint32_t * get_raster() const</div><div class="ttdef"><b>Definition</b> BMPFile.cpp:61</div></div>
+<div class="ttc" id="aclass_b_m_p_file_html_a66e3e8e5c1e850d86ca79456eb9a56bf"><div class="ttname"><a href="class_b_m_p_file.html#a66e3e8e5c1e850d86ca79456eb9a56bf">BMPFile::BMPFile</a></div><div class="ttdeci">BMPFile(uint8_t *data, uint32_t sz)</div><div class="ttdef"><b>Definition</b> BMPFile.cpp:13</div></div>
+<div class="ttc" id="aclass_b_m_p_file_html_a755b78350834eeec9f4bb2c5499f5c9a"><div class="ttname"><a href="class_b_m_p_file.html#a755b78350834eeec9f4bb2c5499f5c9a">BMPFile::get_width</a></div><div class="ttdeci">uint32_t get_width() const</div><div class="ttdef"><b>Definition</b> BMPFile.cpp:97</div></div>
+<div class="ttc" id="aclass_b_m_p_file_html_ac3a320d8a85a66e75e198cc58b484e30"><div class="ttname"><a href="class_b_m_p_file.html#ac3a320d8a85a66e75e198cc58b484e30">BMPFile::get_pixel</a></div><div class="ttdeci">uint32_t get_pixel(uint32_t x, uint32_t y) const</div><div class="ttdef"><b>Definition</b> BMPFile.cpp:66</div></div>
+<div class="ttc" id="aclass_b_m_p_file_html_af7b468efba2b36847bbcb1515ba7cc35"><div class="ttname"><a href="class_b_m_p_file.html#af7b468efba2b36847bbcb1515ba7cc35">BMPFile::get_height</a></div><div class="ttdeci">uint32_t get_height() const</div><div class="ttdef"><b>Definition</b> BMPFile.cpp:102</div></div>
 <div class="ttc" id="afat16_8h_html_a3e6324cfedfcdd94098822c33bb97492"><div class="ttname"><a href="fat16_8h.html#a3e6324cfedfcdd94098822c33bb97492">__attribute__</a></div><div class="ttdeci">struct fat_directory __attribute__</div></div>
 <div class="ttc" id="afat16_8h_html_acb7bc06bed6f6408d719334fc41698c7"><div class="ttname"><a href="fat16_8h.html#acb7bc06bed6f6408d719334fc41698c7">reserved</a></div><div class="ttdeci">uint8_t reserved</div><div class="ttdef"><b>Definition</b> fat16.h:3</div></div>
 <div class="ttc" id="afat16_8h_html_af27e6d4ea3add14cd8cc9aa275d716ad"><div class="ttname"><a href="fat16_8h.html#af27e6d4ea3add14cd8cc9aa275d716ad">signature</a></div><div class="ttdeci">uint8_t signature</div><div class="ttdef"><b>Definition</b> fat16.h:2</div></div>

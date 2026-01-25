@@ -117,8 +117,8 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (!(EX)) <a class="code hl_function" href="kernel_8cpp.html#a93999bcd6d4fc14e8ad565a045e6f773">kernel_panic</a> (<span class="stringliteral">&quot;Assertion failed: %s at %s:%d&quot;</span>, #EX, __FILE__, __LINE__)</div>
-<div class="ttc" id="akernel_8cpp_html_a93999bcd6d4fc14e8ad565a045e6f773"><div class="ttname"><a href="kernel_8cpp.html#a93999bcd6d4fc14e8ad565a045e6f773">kernel_panic</a></div><div class="ttdeci">void kernel_panic(const char *fmt,...)</div><div class="ttdoc">(Temporary) Prints kernel_message and halts the kernel.</div><div class="ttdef"><b>Definition</b> kernel.cpp:323</div></div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (!(EX))     \</div>
+<div class="line">kernel_panic(<span class="stringliteral">&quot;Assertion failed: %s at %s:%d&quot;</span>, #EX, __FILE__, __LINE__)</div>
 </div><!-- fragment -->
 </div>
 </div>

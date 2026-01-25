@@ -100,8 +100,12 @@ $(function(){initNavTree('assert_8h_source.html','',''); });
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="kernel_8h.html">kernel.h</a>&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="assert_8h.html#a33fa45e42155e69ce8d0da0fd978b351">    8</a></span><span class="preprocessor">#define assert(EX) if (!(EX)) kernel_panic (&quot;Assertion failed: %s at %s:%d&quot;, #EX, __FILE__, __LINE__)</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="assert_8h.html#a9b064f61610cd78085a2b9fb19f94511">    9</a></span><span class="preprocessor">#define assert_not_reached() assert(0)</span></div>
+<div class="foldopen" id="foldopen00008" data-start="" data-end="">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="assert_8h.html#a33fa45e42155e69ce8d0da0fd978b351">    8</a></span><span class="preprocessor">#define assert(EX) \</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">    if (!(EX))     \</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">    kernel_panic(&quot;Assertion failed: %s at %s:%d&quot;, #EX, __FILE__, __LINE__)</span></div>
+</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="assert_8h.html#a9b064f61610cd78085a2b9fb19f94511">   11</a></span><span class="preprocessor">#define assert_not_reached() assert(0)</span></div>
 <div class="ttc" id="akernel_8h_html"><div class="ttname"><a href="kernel_8h.html">kernel.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

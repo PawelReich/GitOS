@@ -136,7 +136,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_function" href="io_8c.html#a3105e202829cfca8b5757df9351f96e1">outw</a>(0x8A00,0x8A00); <a class="code hl_function" href="io_8c.html#a3105e202829cfca8b5757df9351f96e1">outw</a>(0x8A00,0x08AE0);</div>
+<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_function" href="io_8c.html#a3105e202829cfca8b5757df9351f96e1">outw</a>(0x8A00, 0x8A00); \</div>
+<div class="line">outw(0x8A00, 0x08AE0);</div>
 <div class="ttc" id="aio_8c_html_a3105e202829cfca8b5757df9351f96e1"><div class="ttname"><a href="io_8c.html#a3105e202829cfca8b5757df9351f96e1">outw</a></div><div class="ttdeci">void outw(uint16_t port, uint16_t val)</div><div class="ttdef"><b>Definition</b> io.c:22</div></div>
 </div><!-- fragment -->
 </div>
@@ -173,8 +174,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_function" href="kernel_8cpp.html#a199a1f701f4cc4fd1c3ff7903a102d7a">kprintf</a>(<span class="stringliteral">&quot;%s:%d: &quot;</span>, __FILE__, __LINE__); <a class="code hl_function" href="kernel_8cpp.html#a199a1f701f4cc4fd1c3ff7903a102d7a">kprintf</a>(fmt, __VA_ARGS__); <a class="code hl_function" href="kernel_8cpp.html#a199a1f701f4cc4fd1c3ff7903a102d7a">kprintf</a>(<span class="stringliteral">&quot;\n&quot;</span>);</div>
-<div class="ttc" id="akernel_8cpp_html_a199a1f701f4cc4fd1c3ff7903a102d7a"><div class="ttname"><a href="kernel_8cpp.html#a199a1f701f4cc4fd1c3ff7903a102d7a">kprintf</a></div><div class="ttdeci">void kprintf(const char *fmt,...)</div><div class="ttdoc">Prints to kernel debug channels. Max length of processed message is 1024 characters.</div><div class="ttdef"><b>Definition</b> kernel.cpp:351</div></div>
+<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_function" href="kernel_8cpp.html#a199a1f701f4cc4fd1c3ff7903a102d7a">kprintf</a>(<span class="stringliteral">&quot;%s:%d: &quot;</span>, __FILE__, __LINE__); \</div>
+<div class="line">kprintf(fmt, __VA_ARGS__);              \</div>
+<div class="line">kprintf(<span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="ttc" id="akernel_8cpp_html_a199a1f701f4cc4fd1c3ff7903a102d7a"><div class="ttname"><a href="kernel_8cpp.html#a199a1f701f4cc4fd1c3ff7903a102d7a">kprintf</a></div><div class="ttdeci">void kprintf(const char *fmt,...)</div><div class="ttdoc">Prints to kernel debug channels. Max length of processed message is 1024 characters.</div><div class="ttdef"><b>Definition</b> kernel.cpp:354</div></div>
 </div><!-- fragment -->
 </div>
 </div>
