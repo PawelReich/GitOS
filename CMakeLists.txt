@@ -15,6 +15,7 @@ set(CMAKE_CXX_COMPILER "${TOOLS_DIR}/${TARGET}-g++")
 set(CMAKE_OBJCOPY "${TOOLS_DIR}/${TARGET}-objcopy")
 set(CMAKE_OBJDUMP "${TOOLS_DIR}/${TARGET}-objdump")
 set(NASM "nasm")
+set(IMAGE_SCRIPT "${CMAKE_SOURCE_DIR}/scripts/image.sh")
 
 # Compiler arguments
 set(CMAKE_C_FLAGS "-g -std=gnu99 -ffreestanding -fno-omit-frame-pointer -nostdlib -O0 -Wall -Wextra -Werror")
@@ -32,12 +33,13 @@ set(BOOT_DIR "${MOUNT_DIR}/boot")
 set(FS_DIR "${CMAKE_SOURCE_DIR}/fs")
 
 add_custom_target(grub ALL
-        COMMAND sh ${CMAKE_SOURCE_DIR}/scripts/install_grub.sh ${DISK_BIN} ${MOUNT_DIR} ${FS_DIR} ${USERLAND_DESTINATION} ${KERNEL_ELF}
-        COMMENT "Generating disk image with Grub2"
+    COMMAND bash ${IMAGE_SCRIPT} grub ${DISK_BIN} ${MOUNT_DIR} ${FS_DIR} ${USERLAND_DESTINATION} ${KERNEL_ELF} "ignored"
+    COMMENT "Generating disk image with Grub2"
 )
 
 add_custom_target(gitboot ALL
-        COMMAND sh ${CMAKE_SOURCE_DIR}/scripts/install_gitboot.sh ${DISK_BIN} ${MOUNT_DIR} ${FS_DIR} ${USERLAND_DESTINATION} ${KERNEL_BIN} ${STAGE1_BIN}
+    COMMAND bash ${IMAGE_SCRIPT} gitboot ${DISK_BIN} ${MOUNT_DIR} ${FS_DIR} ${USERLAND_DESTINATION} ${KERNEL_BIN} ${STAGE1_BIN}
+    COMMENT "Generating disk image with Gitboot"
 )
 add_dependencies(gitboot stage1_bin kernel_bin userland)
 add_dependencies(grub kernel_bin userland)
