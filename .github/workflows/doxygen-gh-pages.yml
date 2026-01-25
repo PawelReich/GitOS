@@ -1,13 +1,17 @@
 name: GitHub Pages Deploy Action
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Build OS"]
+    types:
+      - completed
     branches:
       - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,9 +31,26 @@ jobs:
 
       - name: Generate Doxygen Documentation
         run: doxygen scripts/Doxyfile
-          
+
       - name: Create .nojekyll
         run: touch docs/html/.nojekyll
+
+      - name: Download disk-image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: disk-image
+          path: temp_artifact
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Demo Folder
+        run: |
+          mkdir -p docs/html/demo
+          cp -r scripts/v86/* docs/html/demo/
+          cp temp_artifact/disk.bin docs/html/demo/
+          
+          # Verify file structure (optional, helpful for debugging logs)
+          ls -R docs/html/demo
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
