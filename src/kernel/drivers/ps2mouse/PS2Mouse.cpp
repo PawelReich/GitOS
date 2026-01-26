@@ -34,7 +34,10 @@ void PS2Mouse::handle_cycle()
                 case 0:
                     mouse_byte[0] = mouse_in;
                     if (!(mouse_in & MOUSE_V_BIT))
+                    {
+                        kprintf("Malformed mouse data: 0x%x", mouse_byte[0]);
                         return;
+                    }
                     ++mouse_cycle;
                     break;
                 case 1:
@@ -44,18 +47,15 @@ void PS2Mouse::handle_cycle()
                 case 2:
                     mouse_byte[2] = mouse_in;
 
-                    if (mouse_byte[0] & 0x80 || mouse_byte[0] & 0x40)
+                    // Check for Y and X overflow bits
+                    if (mouse_byte[0] & 0b10000000 || mouse_byte[0] & 0b1000000)
                     {
+                        mouse_cycle = 0;
                         break;
                     }
                     uint8_t mouse_buttons = mouse_byte[0];
                     int32_t mouse_x = static_cast<int8_t>(mouse_byte[1]);
                     int32_t mouse_y = static_cast<int8_t>(mouse_byte[2]);
-
-                    if ((mouse_byte[0] >> 5 & 0x1) == 1)
-                        mouse_x = mouse_x | (mouse_byte[0] >> 5 & 0x1);
-                    if ((mouse_byte[0] >> 4 & 0x1) == 1)
-                        mouse_y = mouse_y | (mouse_byte[0] >> 4 & 0x1);
 
                     mouse_y = -mouse_y;
 
