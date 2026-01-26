@@ -4,6 +4,15 @@ My personal graphical operating system project
 
 ![Graphical shell](scripts/GitOS_Shell.png "Graphical shell")
 
+## Links
+
+You can access the documentation [here](https://PawelReich.github.io/GitOS).
+
+There is a simple [v86-based](https://github.com/copy/v86) demo available [here](https://pawelreich.github.io/GitOS/demo)!
+
+Note that the speed is not real-time.
+
+
 ## Goals
 
 ### Boot
@@ -64,14 +73,3 @@ My personal graphical operating system project
 - [x] Basic printing to kernel stdio
 - [ ] Debugging userland applications
 
-
-(Automated) documentation for this project can be found [Here](https://PawelReich.github.io/GitOS)
-
-
-### Using:
-* GCC/G++
-* NASM
-* qemu-system-i686
-* CMake
-* CLion with DevContainer
-* Doxygen for documentation
