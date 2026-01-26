@@ -1,0 +1,46 @@
+<!doctype html>
+<title>GitOS</title> 
+<script src="libv86.js"></script>
+<script>
+"use strict";
+
+window.onload = function()
+{
+    var emulator = window.emulator = new V86({
+        wasm_path: "v86.wasm",
+        memory_size: 32 * 1024 * 1024,
+        vga_memory_size: 4 * 1024 * 768,
+        screen_container: document.getElementById("screen_container"),
+        bios: {
+            url: "bios/seabios.bin",
+        },
+        vga_bios: {
+            url: "bios/vgabios.bin",
+        },
+        hda: {
+            url: "disk.bin",
+            async: false
+
+        },
+        autostart: true,
+    });
+
+
+    emulator.add_listener("serial0-output-byte", function(byte)
+    {
+        var char = String.fromCharCode(byte);
+        if(char === "\r")
+        {
+            return;
+        }
+
+        document.getElementById("terminal").value += char;
+    });
+}
+</script>
+
+<textarea readonly rows=25 cols=80 id="terminal"></textarea>
+    <div id="screen_container">
+    <div style="white-space: pre; font: 14px monospace; line-height: 14px"></div>
+    <canvas style="display: none"></canvas>
+</div>
