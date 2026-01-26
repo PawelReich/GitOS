@@ -19,7 +19,7 @@ const Multiboot::multiboot2_header Multiboot::m_mb2_header = {
         .size = sizeof(multiboot_header_tag_framebuffer),
         .width = 1024,
         .height = 768,
-        .depth = 32,
+        .depth = 24,
     }
 };
 
