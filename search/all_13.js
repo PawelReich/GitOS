@@ -4,7 +4,7 @@ var searchData=
   ['tables_1',['tables',['../structmultiboot__tag__smbios.html#afac0df7fd9904c415f83723a9892134b',1,'multiboot_tag_smbios']]],
   ['tail_2',['tail',['../structprocess_1_1keyboard__buffer.html#aff39d864a6594bc5f4a5e365282e00fe',1,'process::keyboard_buffer']]],
   ['task_3',['task',['../structtask.html',1,'task'],['../structprocess.html#a51b84d6af17c12b1021cd3b75f29e769',1,'process::task']]],
-  ['task_20management_4',['Task Management',['../index.html#autotoc_md8',1,'']]],
+  ['task_20management_4',['Task Management',['../index.html#autotoc_md9',1,'']]],
   ['task_2ec_5',['task.c',['../task_8c.html',1,'']]],
   ['task_2eh_6',['task.h',['../task_8h.html',1,'']]],
   ['task_5fcopy_5fstring_5ffrom_7',['task_copy_string_from',['../task_8c.html#a7b9fe10fa4d12a92696ade8b825a6a37',1,'task_copy_string_from(struct task *task, void *virtual_address, void *physical_address, int max):&#160;task.c'],['../task_8h.html#a7b9fe10fa4d12a92696ade8b825a6a37',1,'task_copy_string_from(struct task *task, void *virtual_address, void *physical_address, int max):&#160;task.c']]],

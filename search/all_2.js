@@ -18,7 +18,7 @@ var searchData=
   ['bmpfile_2ecpp_15',['BMPFile.cpp',['../_b_m_p_file_8cpp.html',1,'']]],
   ['bmpfile_2ehpp_16',['BMPFile.hpp',['../_b_m_p_file_8hpp.html',1,'']]],
   ['bochsbreak_17',['BochsBreak',['../kernel_8h.html#aef9e7d5ae531e4004885f5a5cc002143',1,'kernel.h']]],
-  ['boot_18',['Boot',['../index.html#autotoc_md2',1,'']]],
+  ['boot_18',['Boot',['../index.html#autotoc_md3',1,'']]],
   ['bootloader_2ecpp_19',['Bootloader.cpp',['../_bootloader_8cpp.html',1,'']]],
   ['bootloader_2ehpp_20',['Bootloader.hpp',['../_bootloader_8hpp.html',1,'']]],
   ['bpp_21',['bpp',['../struct_framebuffer_info.html#ac2987cad919bae7cfaa2b2a9122e5702',1,'FramebufferInfo::bpp'],['../_git_boot_8hpp.html#a496818f626ceb32365ca6cf57c991979',1,'bpp:&#160;GitBoot.hpp']]],

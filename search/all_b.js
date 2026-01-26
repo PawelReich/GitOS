@@ -1,7 +1,7 @@
 var searchData=
 [
   ['kdebug_0',['kdebug',['../kernel_8h.html#ab8e98b2d78ed2a7ff3e2af66009fbe27',1,'kernel.h']]],
-  ['kernel_1',['Kernel',['../index.html#autotoc_md3',1,'']]],
+  ['kernel_1',['Kernel',['../index.html#autotoc_md4',1,'']]],
   ['kernel_2ecpp_2',['kernel.cpp',['../kernel_8cpp.html',1,'']]],
   ['kernel_2eh_3',['kernel.h',['../kernel_8h.html',1,'']]],
   ['kernel_5fcode_5fselector_4',['KERNEL_CODE_SELECTOR',['../gdt_8h.html#ab6c98f7af7f77b08139f02f671678434',1,'gdt.h']]],

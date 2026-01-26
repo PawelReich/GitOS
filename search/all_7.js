@@ -42,7 +42,7 @@ var searchData=
   ['gitboot_2ecpp_39',['GitBoot.cpp',['../_git_boot_8cpp.html',1,'']]],
   ['gitboot_2ehpp_40',['GitBoot.hpp',['../_git_boot_8hpp.html',1,'']]],
   ['gitos_41',['GitOS',['../index.html',1,'']]],
-  ['goals_42',['Goals',['../index.html#autotoc_md1',1,'']]],
+  ['goals_42',['Goals',['../index.html#autotoc_md2',1,'']]],
   ['granularity_43',['granularity',['../_git_boot_8hpp.html#a42ce7dd2bb0db3b053ba4d02272886e4',1,'GitBoot.hpp']]],
   ['graphics_44',['Graphics',['../class_graphics.html',1,'']]],
   ['graphics_2ehpp_45',['graphics.hpp',['../graphics_8hpp.html',1,'']]],

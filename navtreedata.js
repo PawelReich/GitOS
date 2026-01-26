@@ -25,18 +25,18 @@
 var NAVTREE =
 [
   [ "GitOS", "index.html", [
-    [ "Goals", "index.html#autotoc_md1", [
-      [ "Boot", "index.html#autotoc_md2", null ],
-      [ "Kernel", "index.html#autotoc_md3", [
-        [ "Drivers", "index.html#autotoc_md4", null ],
-        [ "Formats", "index.html#autotoc_md5", null ],
-        [ "Filesystem", "index.html#autotoc_md6", null ],
-        [ "Memory Management", "index.html#autotoc_md7", null ],
-        [ "Task Management", "index.html#autotoc_md8", null ],
-        [ "Syscalls", "index.html#autotoc_md9", null ]
+    [ "Links", "index.html#autotoc_md1", null ],
+    [ "Goals", "index.html#autotoc_md2", [
+      [ "Boot", "index.html#autotoc_md3", null ],
+      [ "Kernel", "index.html#autotoc_md4", [
+        [ "Drivers", "index.html#autotoc_md5", null ],
+        [ "Formats", "index.html#autotoc_md6", null ],
+        [ "Filesystem", "index.html#autotoc_md7", null ],
+        [ "Memory Management", "index.html#autotoc_md8", null ],
+        [ "Task Management", "index.html#autotoc_md9", null ],
+        [ "Syscalls", "index.html#autotoc_md10", null ]
       ] ],
-      [ "Userland", "index.html#autotoc_md10", null ],
-      [ "Using:", "index.html#autotoc_md11", null ]
+      [ "Userland", "index.html#autotoc_md11", null ]
     ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
