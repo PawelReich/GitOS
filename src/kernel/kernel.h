@@ -13,6 +13,7 @@ extern "C"
 {
 #endif
 
+    uint64_t kernel_get_tick();
     void kernel_main(uint32_t magic, void* info_ptr);
     void kernel_halt();
     void kernel_panic(const char* fmt, ...);
