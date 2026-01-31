@@ -40,11 +40,13 @@ void process_command(char* str)
                 FramebufferGraphics::the()->draw_pixel(x, y, 0xff0000);
             }
         }
+        return;
     }
 
     if (strcmp("clear", str) == 0)
     {
         FramebufferGraphics::the()->clear_screen();
+        return;
     }
 
     if (strncmp("cat ", str, 4) == 0)
