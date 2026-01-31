@@ -20,6 +20,7 @@ const char* get_cwd()
 
 void process_command(char* str)
 {
+    debug_printf("Command:\"%s\"\n", str);
     if (strcmp("int3", str) == 0)
     {
         asm volatile("int $3");
@@ -103,6 +104,9 @@ void process_command(char* str)
 
 int main(int argc, char** argv)
 {
+    int framebuffer_fd = fopen("0:/fb", "rw");
+    auto* fbg = FramebufferGraphics::the();
+
     printf("GitOS Zofia - Build %s %s\n", __DATE__, __TIME__);
 
     printf("argc = %d\n", argc);
@@ -121,6 +125,8 @@ int main(int argc, char** argv)
         int idx = 0;
         while (true)
         {
+            fseek(framebuffer_fd, 0, SEEK_SET);
+            fwrite(fbg->get_buffer(), fbg->get_buffer_size(), 1, framebuffer_fd);
             if (idx >= 1024)
                 break;
 
@@ -144,10 +150,13 @@ int main(int argc, char** argv)
             }
             buffer[idx] = c;
             putc(c);
+            debug_printf("current color: %d", fbg->get_current_color());
             idx++;
         }
         buffer[idx] = 0;
         putc('\n');
+        fseek(framebuffer_fd, 0, SEEK_SET);
+        fwrite(fbg->get_buffer(), fbg->get_buffer_size(), 1, framebuffer_fd);
 
         process_command(buffer);
     }
