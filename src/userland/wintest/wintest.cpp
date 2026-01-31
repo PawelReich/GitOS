@@ -49,8 +49,7 @@ int main(int argc, char* argv[])
 
     while (true)
     {
-        for (int i = 0; i < 100000000; i++)
-            __asm__ volatile("nop");
+        sleep(1000);
         fb->print_string_color("i", 0xffff0000);
 
         memcpy(full_data + sizeof(window_message_preamble), fb->get_buffer(), fb->get_buffer_size());
