@@ -323,6 +323,15 @@ void* sys$getpid(struct interrupt_frame* frame)
     return reinterpret_cast<void*>(task_current()->process->id);
 }
 
+void* sys$get_tick(struct interrupt_frame* frame)
+{
+    (void)(frame);
+    uint64_t* target_variable = static_cast<uint64_t*>(task_peek_stack(task_current(), 0));
+    *target_variable = kernel_get_tick();
+
+    return 0;
+}
+
 void syscall_init()
 {
     syscall_register(SYSCALL_PUTSTRING, sys$putstring);
@@ -342,4 +351,5 @@ void syscall_init()
     syscall_register(SYSCALL_FCLOSE, sys$fclose);
     syscall_register(SYSCALL_OPENIPC, sys$open_ipc);
     syscall_register(SYSCALL_GETPID, sys$getpid);
+    syscall_register(SYSCALL_GET_TICK, sys$get_tick);
 }

@@ -65,6 +65,12 @@ static Graphics* get_graphics()
         return TextModeGraphics::the();
 }
 
+volatile static uint64_t tick_ct = 0;
+uint64_t kernel_get_tick()
+{
+    return tick_ct;
+}
+
 struct tss tss;
 struct gdt gdt_real[TOTAL_GDT_SEGMENTS];
 struct gdt_structured gdt_structured[TOTAL_GDT_SEGMENTS] = {
@@ -103,6 +109,7 @@ void timer_interrupt(int int_no, struct interrupt_frame* frame)
     (void)(int_no);
     (void)(frame);
     pic_EOI(0);
+    tick_ct++;
     task_switch(task_get_next());
     task_return(&task_current()->registers);
 }

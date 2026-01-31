@@ -104,3 +104,18 @@ getpid:
     mov esp, ebp
     pop ebp
     ret
+
+extern gettick
+gettick:
+    push ebp
+    mov ebp, esp
+
+    push dword[ebp+8]
+
+    mov eax, 17
+    int 0x80
+    add esp, 4
+
+    mov esp, ebp
+    pop ebp
+    ret
