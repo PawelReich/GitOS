@@ -50,6 +50,14 @@ void process_command(char* str)
         return;
     }
 
+    if (strcmp("tick", str) == 0)
+    {
+        uint64_t* val = new uint64_t;
+        gettick(val);
+        printf("%llu ms since boot\r\n", *val);
+        return;
+    }
+
     if (strncmp("cat ", str, 4) == 0)
     {
         char* file = str + 4;
