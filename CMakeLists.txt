@@ -9,12 +9,11 @@ cmake_minimum_required(VERSION 3.16)
 project(GitOS C CXX ASM)
 
 # Set the cross-compiler tools
-set(TOOLS_DIR "/home/runner/cross/bin")
 set(TARGET "i686-elf")
-set(CMAKE_C_COMPILER "${TOOLS_DIR}/${TARGET}-gcc")
-set(CMAKE_CXX_COMPILER "${TOOLS_DIR}/${TARGET}-g++")
-set(CMAKE_OBJCOPY "${TOOLS_DIR}/${TARGET}-objcopy")
-set(CMAKE_OBJDUMP "${TOOLS_DIR}/${TARGET}-objdump")
+set(CMAKE_C_COMPILER "${TARGET}-gcc")
+set(CMAKE_CXX_COMPILER "${TARGET}-g++")
+set(CMAKE_OBJCOPY "${TARGET}-objcopy")
+set(CMAKE_OBJDUMP "${TARGET}-objdump")
 set(NASM "nasm")
 set(IMAGE_SCRIPT "${CMAKE_SOURCE_DIR}/scripts/image.sh")
 
