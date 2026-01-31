@@ -297,11 +297,22 @@ void kernel_main(uint32_t magic, void* info_ptr)
     kprintf("OK\r\n");
     //
 
-    kprintf("Loading zofia.elf..");
+    char* init = new char[32];
+    if (multiboot.is_multiboot() && strncmp(multiboot.get_cmdline(), "init=", 5) == 0)
+    {
+        strncpy(init, multiboot.get_cmdline() + 5, 32);
+        kprintf("Loading init from cmdline: %s\n", init);
+    }
+    else
+    {
+        strcpy(init, "zofia.elf\0");
+    }
+
+    kprintf("Loading %s\n", init);
     struct process* process = new struct process;
-    res = process_load_switch("0:/shell.elf", process);
+    res = process_load_switch(init, process);
     process->argc = 2;
-    process->argv[0] = (char*)"zofia.elf";
+    process->argv[0] = init;
     process->argv[1] = (char*)"hello:)";
 
     if (res != 0)
