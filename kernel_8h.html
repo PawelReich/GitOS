@@ -106,6 +106,7 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a75517721eef683c73051da4e79585317" id="r_a75517721eef683c73051da4e79585317"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a75517721eef683c73051da4e79585317">kernel_get_tick</a> ()</td></tr>
 <tr class="memitem:a31aed747805bab1aa7860eceb7247b3f" id="r_a31aed747805bab1aa7860eceb7247b3f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a31aed747805bab1aa7860eceb7247b3f">kernel_main</a> (uint32_t <a class="el" href="_multiboot_8hpp.html#a57f54349f4fd1cbbb52058812e146af2">magic</a>, void *info_ptr)</td></tr>
 <tr class="memdesc:a31aed747805bab1aa7860eceb7247b3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel C entry point.  <br /></td></tr>
 <tr class="memitem:aa0feb8fe21f2712340bcfe8777e9860b" id="r_aa0feb8fe21f2712340bcfe8777e9860b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa0feb8fe21f2712340bcfe8777e9860b">kernel_halt</a> ()</td></tr>
@@ -177,11 +178,28 @@ Variables</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line"><a class="code hl_function" href="kernel_8cpp.html#a199a1f701f4cc4fd1c3ff7903a102d7a">kprintf</a>(<span class="stringliteral">&quot;%s:%d: &quot;</span>, __FILE__, __LINE__); \</div>
 <div class="line">kprintf(fmt, __VA_ARGS__);              \</div>
 <div class="line">kprintf(<span class="stringliteral">&quot;\n&quot;</span>);</div>
-<div class="ttc" id="akernel_8cpp_html_a199a1f701f4cc4fd1c3ff7903a102d7a"><div class="ttname"><a href="kernel_8cpp.html#a199a1f701f4cc4fd1c3ff7903a102d7a">kprintf</a></div><div class="ttdeci">void kprintf(const char *fmt,...)</div><div class="ttdoc">Prints to kernel debug channels. Max length of processed message is 1024 characters.</div><div class="ttdef"><b>Definition</b> kernel.cpp:365</div></div>
+<div class="ttc" id="akernel_8cpp_html_a199a1f701f4cc4fd1c3ff7903a102d7a"><div class="ttname"><a href="kernel_8cpp.html#a199a1f701f4cc4fd1c3ff7903a102d7a">kprintf</a></div><div class="ttdeci">void kprintf(const char *fmt,...)</div><div class="ttdoc">Prints to kernel debug channels. Max length of processed message is 1024 characters.</div><div class="ttdef"><b>Definition</b> kernel.cpp:372</div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a75517721eef683c73051da4e79585317" name="a75517721eef683c73051da4e79585317"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75517721eef683c73051da4e79585317">&#9670;&#160;</a></span>kernel_get_tick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t kernel_get_tick </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aa0feb8fe21f2712340bcfe8777e9860b" name="aa0feb8fe21f2712340bcfe8777e9860b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa0feb8fe21f2712340bcfe8777e9860b">&#9670;&#160;</a></span>kernel_halt()</h2>
 

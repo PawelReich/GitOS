@@ -72,9 +72,9 @@ var NAVTREEINDEX =
 "class_memory_f_s.html#affd65a2c308fd043fa11902663034154",
 "functions_n.html",
 "kernel_2fs_2file_8h.html#a18ee81c05ed9a26a59ba7120220a2c96",
-"ps2keyboard_8h.html#a8ccc910489590ed0143e2fed529597f8",
-"structmultiboot__mmap__entry.html",
-"syscall_8hpp.html#a01e111270f52e13b9d48a3829ffef89b"
+"process_8h.html#ad8b4edaf0f7da944bfb15b926289207d",
+"structmultiboot__header__tag__relocatable.html#a36a2211c50c4101850194fc32551e642",
+"syscall_8cpp.html#abe3d50c458631cc5a7e520bd1db63237"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

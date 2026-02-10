@@ -106,6 +106,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a3ebb46db96609b797c999835cf8c108d" id="r_a3ebb46db96609b797c999835cf8c108d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3ebb46db96609b797c999835cf8c108d">free</a> (void *address)</td></tr>
 <tr class="memitem:a4524043593d3c21ae358d8bd094d5f86" id="r_a4524043593d3c21ae358d8bd094d5f86"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4524043593d3c21ae358d8bd094d5f86">open_ipc</a> (const char *<a class="el" href="fat16_8h.html#a36126364ff9f56a16488e5c2b8d1206e">filename</a>, uint32_t packet_size, uint32_t count)</td></tr>
 <tr class="memitem:a2ccdeb931b6cfcf884ca5ad73e0ba11c" id="r_a2ccdeb931b6cfcf884ca5ad73e0ba11c"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a2ccdeb931b6cfcf884ca5ad73e0ba11c">getpid</a> ()</td></tr>
+<tr class="memitem:aeb53c01094bd74b5dd4b883a7bc17d65" id="r_aeb53c01094bd74b5dd4b883a7bc17d65"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aeb53c01094bd74b5dd4b883a7bc17d65">gettick</a> (uint64_t *val)</td></tr>
+<tr class="memitem:a815fa2e8a1014193d32ad0b0abe9265c" id="r_a815fa2e8a1014193d32ad0b0abe9265c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a815fa2e8a1014193d32ad0b0abe9265c">sleep</a> (uint64_t ms)</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="abc36e836b8b4cff17c0ba736424b1577" name="abc36e836b8b4cff17c0ba736424b1577"></a>
@@ -199,6 +201,23 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="aeb53c01094bd74b5dd4b883a7bc17d65" name="aeb53c01094bd74b5dd4b883a7bc17d65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb53c01094bd74b5dd4b883a7bc17d65">&#9670;&#160;</a></span>gettick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gettick </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t *</td>          <td class="paramname"><span class="paramname"><em>val</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a606bc9873b128be1978f63b5f0b10339" name="a606bc9873b128be1978f63b5f0b10339"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a606bc9873b128be1978f63b5f0b10339">&#9670;&#160;</a></span>malloc()</h2>
 
@@ -243,6 +262,25 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="reference">References <a class="el" href="fat16_8h.html#a36126364ff9f56a16488e5c2b8d1206e">filename</a>.</p>
+
+</div>
+</div>
+<a id="a815fa2e8a1014193d32ad0b0abe9265c" name="a815fa2e8a1014193d32ad0b0abe9265c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a815fa2e8a1014193d32ad0b0abe9265c">&#9670;&#160;</a></span>sleep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sleep </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>ms</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="#aeb53c01094bd74b5dd4b883a7bc17d65">gettick()</a>.</p>
 
 </div>
 </div>

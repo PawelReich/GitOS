@@ -3,6 +3,7 @@ var kernel_8h =
     [ "BochsBreak", "kernel_8h.html#aef9e7d5ae531e4004885f5a5cc002143", null ],
     [ "DEBUG_MODE", "kernel_8h.html#ac80a3592e72fd96b772ee47a7d8e0d0a", null ],
     [ "kdebug", "kernel_8h.html#ab8e98b2d78ed2a7ff3e2af66009fbe27", null ],
+    [ "kernel_get_tick", "kernel_8h.html#a75517721eef683c73051da4e79585317", null ],
     [ "kernel_halt", "kernel_8h.html#aa0feb8fe21f2712340bcfe8777e9860b", null ],
     [ "kernel_main", "kernel_8h.html#a31aed747805bab1aa7860eceb7247b3f", null ],
     [ "kernel_page", "kernel_8h.html#abd882687cd304ceab89392243ac0bf0d", null ],
