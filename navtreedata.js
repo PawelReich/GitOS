@@ -70,11 +70,11 @@ var NAVTREEINDEX =
 [
 "_b_m_p_file_8cpp.html",
 "class_memory_f_s.html#affd65a2c308fd043fa11902663034154",
-"functions_n.html",
-"kernel_2fs_2file_8h.html#a18ee81c05ed9a26a59ba7120220a2c96",
-"process_8h.html#ad8b4edaf0f7da944bfb15b926289207d",
-"structmultiboot__header__tag__relocatable.html#a36a2211c50c4101850194fc32551e642",
-"syscall_8cpp.html#abe3d50c458631cc5a7e520bd1db63237"
+"functions_m.html",
+"kernel_2fs_2file_8h.html#a16ae9c72750529c16e15f41d5c45e9c0",
+"process_8h.html#acb72730a52c1eea0e1728521673ad4e2",
+"structmultiboot__header__tag__relocatable.html#a2fb0f44cdb11ba5c2e3a2eca687f8c4a",
+"syscall_8cpp.html#a8f1950e8deb780e753aad44e7902d612"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

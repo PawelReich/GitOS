@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"process_8h.html#acb72730a52c1eea0e1728521673ad4e2":[3,0,0,0,9,1,10],
 "process_8h.html#ad8b4edaf0f7da944bfb15b926289207d":[3,0,0,0,9,1,8],
 "process_8h_source.html":[3,0,0,0,9,1],
 "ps2keyboard_8c.html":[3,0,0,0,2,3,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "structmultiboot__header__tag__module__align.html#a36a2211c50c4101850194fc32551e642":[2,0,40,0],
 "structmultiboot__header__tag__module__align.html#a6d813a0f2b5281b18dea3f4cda696c33":[2,0,40,1],
 "structmultiboot__header__tag__module__align.html#a6fd1efdfcdc7c9055626eba40df03239":[2,0,40,2],
-"structmultiboot__header__tag__relocatable.html":[2,0,41],
-"structmultiboot__header__tag__relocatable.html#a2fb0f44cdb11ba5c2e3a2eca687f8c4a":[2,0,41,3]
+"structmultiboot__header__tag__relocatable.html":[2,0,41]
 };

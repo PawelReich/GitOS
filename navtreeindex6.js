@@ -1,5 +1,6 @@
 var NAVTREEINDEX6 =
 {
+"syscall_8cpp.html#a8f1950e8deb780e753aad44e7902d612":[3,0,0,0,8,0,17],
 "syscall_8cpp.html#abe3d50c458631cc5a7e520bd1db63237":[3,0,0,0,8,0,11],
 "syscall_8cpp.html#ad63f8492a06b5c9a652069f158e11d24":[3,0,0,0,8,0,9],
 "syscall_8cpp.html#ad80a60a85041a139282725d81af7fe7d":[3,0,0,0,8,0,16],
@@ -82,6 +83,9 @@ var NAVTREEINDEX6 =
 "task_8h.html#af2b16bef95c844028dd145264d1d3875":[3,0,0,0,9,3,25],
 "task_8h.html#afbe98bd1f8d3c7a65d8a8048fdd8cd99":[3,0,0,0,9,3,6],
 "task_8h_source.html":[3,0,0,0,9,3],
+"test_8cpp.html":[3,0,0,1,4,0],
+"test_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97":[3,0,0,1,4,0,0],
+"test_8cpp.html#a6cb6abae3c008c2973e62b4c3af150e9":[3,0,0,1,4,0,1],
 "text__mode_8cpp.html":[3,0,0,0,2,1,0,0],
 "text__mode_8hpp.html":[3,0,0,0,2,1,0,1],
 "text__mode_8hpp_source.html":[3,0,0,0,2,1,0,1],
@@ -197,10 +201,10 @@ var NAVTREEINDEX6 =
 "window_8h.html#ac956b189ed957389bc2eec9407cec0a6":[3,0,0,1,3,2,0,4],
 "window_8h.html#aec32162d9dc3fde2c76d766af522dae5":[3,0,0,1,3,2,0,7],
 "window_8h_source.html":[3,0,0,1,3,2,0],
-"wintest_8cpp.html":[3,0,0,1,4,0],
-"wintest_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97":[3,0,0,1,4,0,0],
-"zofia_8cpp.html":[3,0,0,1,5,0],
-"zofia_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627":[3,0,0,1,5,0,1],
-"zofia_8cpp.html#a9eb66a81c931deb88dd180071272b4c6":[3,0,0,1,5,0,2],
-"zofia_8cpp.html#aeeb1e663e986c2067f46221efeee8906":[3,0,0,1,5,0,0]
+"wintest_8cpp.html":[3,0,0,1,5,0],
+"wintest_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97":[3,0,0,1,5,0,0],
+"zofia_8cpp.html":[3,0,0,1,6,0],
+"zofia_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627":[3,0,0,1,6,0,1],
+"zofia_8cpp.html#a9eb66a81c931deb88dd180071272b4c6":[3,0,0,1,6,0,2],
+"zofia_8cpp.html#aeeb1e663e986c2067f46221efeee8906":[3,0,0,1,6,0,0]
 };

@@ -1,5 +1,6 @@
 var NAVTREEINDEX5 =
 {
+"structmultiboot__header__tag__relocatable.html#a2fb0f44cdb11ba5c2e3a2eca687f8c4a":[2,0,41,3],
 "structmultiboot__header__tag__relocatable.html#a36a2211c50c4101850194fc32551e642":[2,0,41,1],
 "structmultiboot__header__tag__relocatable.html#a3700362b20e0b229acc563054299c9cb":[2,0,41,4],
 "structmultiboot__header__tag__relocatable.html#a6d813a0f2b5281b18dea3f4cda696c33":[2,0,41,5],
@@ -248,6 +249,5 @@ var NAVTREEINDEX5 =
 "syscall_8cpp.html#a6718707a7e4fcafeaa01f7589cf594aa":[3,0,0,0,8,0,3],
 "syscall_8cpp.html#a6c5afa6447c25c16be5620ffdbe120b5":[3,0,0,0,8,0,6],
 "syscall_8cpp.html#a760e5e2bd4a45ae20c7b37fd749c15f4":[3,0,0,0,8,0,14],
-"syscall_8cpp.html#a8c655982452cee3da6b3db2dc27e5228":[3,0,0,0,8,0,13],
-"syscall_8cpp.html#a8f1950e8deb780e753aad44e7902d612":[3,0,0,0,8,0,17]
+"syscall_8cpp.html#a8c655982452cee3da6b3db2dc27e5228":[3,0,0,0,8,0,13]
 };
