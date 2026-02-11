@@ -65,7 +65,7 @@ jobs:
         run: |
           export PATH="${{ env.PREFIX }}/bin:$PATH"
           cmake -S . -B build
-          cmake --build build -- gitboot
+          cmake --build build -- grub
 
       - name: Upload disk.bin
         uses: actions/upload-artifact@v4
