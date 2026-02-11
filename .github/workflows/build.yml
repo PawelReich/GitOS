@@ -31,7 +31,6 @@ jobs:
             libncurses-dev nasm
 
       # 3. Build Toolchain (Only if cache miss)
-      # This is a condensed version of your Dockerfile RUN commands
       - name: Build Cross-Compiler
         if: steps.cache-toolchain.outputs.cache-hit != 'true'
         run: |

@@ -48,9 +48,6 @@ jobs:
           mkdir -p docs/html/demo
           cp -r scripts/v86/* docs/html/demo/
           cp temp_artifact/disk.bin docs/html/demo/
-          
-          # Verify file structure (optional, helpful for debugging logs)
-          ls -R docs/html/demo
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
