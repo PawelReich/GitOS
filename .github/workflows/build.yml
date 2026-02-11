@@ -61,14 +61,57 @@ jobs:
         run: sudo apt-get install -y nasm
 
       # 4. Build Project
-      - name: Build GitOS
+      - name: Build GitOS (GRUB)
         run: |
           export PATH="${{ env.PREFIX }}/bin:$PATH"
           cmake -S . -B build
           cmake --build build -- grub
 
-      - name: Upload disk.bin
+      - name: Upload disk.bin (GRUB)
         uses: actions/upload-artifact@v4
         with:
-          name: disk-image
+          name: disk-image-grub
           path: build/disk.bin
+
+      - name: Build GitOS (GRUB, Test)
+        run: |
+          export PATH="${{ env.PREFIX }}/bin:$PATH"
+          sed -i '/multiboot2/s|init=[^ ]*|init=0:/test.elf|' fs/boot/grub/grub.cfg
+          cmake -S . -B build
+          cmake --build build -- grub
+
+      - name: Upload disk.bin (GRUB, Test)
+        uses: actions/upload-artifact@v4
+        with:
+          name: disk-image-grub-test
+          path: build/disk.bin
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download disk image
+        uses: actions/download-artifact@v4
+        with:
+          name: disk-image-grub-test
+          path: build
+
+      - name: Install QEMU
+        run: sudo apt-get update && sudo apt-get install -y qemu-system-x86
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: "scripts/tests/uv.lock"
+
+      - name: Run OS Tests
+        working-directory: scripts/tests
+        env:
+          DISK_IMAGE_PATH: ../../build/disk.bin
+        run: uv run pytest
+

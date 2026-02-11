@@ -38,7 +38,7 @@ jobs:
       - name: Download disk-image artifact
         uses: actions/download-artifact@v4
         with:
-          name: disk-image
+          name: disk-image-grub
           path: temp_artifact
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
