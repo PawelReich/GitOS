@@ -5,6 +5,22 @@
 #include "string.h"
 #include <stdarg.h>
 #include <stddef.h>
+
+/**
+ * @brief Find character index in string
+ *
+ * @param str String
+ * @param z Searched character
+ */
+char* strchr(const char* str, int z)
+{
+    while (*str != 0 || *str != z)
+    {
+        str++;
+    }
+    return (char*)str;
+}
+
 /**
  * @brief Determine the length of a string
  *

@@ -7,6 +7,7 @@
 #include <stdarg.h>
 #include <stddef.h>
 
+char* strchr(const char* str, int z);
 size_t strlen(const char* str);
 size_t strnlen(const char* str, size_t max_len);
 char* strcpy(char* dest, const char* src);
