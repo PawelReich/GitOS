@@ -21,6 +21,7 @@ char tolower(char c);
 
 char* itoa(long num, char* str, int base);
 char* uitoa(unsigned long num, char* str, int base);
+int atoi(const char* str, int base);
 
 char* sprintf(char* buf, const char* fmt, ...);
 char* vsprintf(char* buf, const char* fmt, va_list args);

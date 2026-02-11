@@ -283,6 +283,45 @@ char* uitoa(unsigned long num, char* str, int base)
 }
 
 /**
+ * @brief Converts string to number
+ *
+ * @param str String to convert
+ * @param base Base to use when converting the number
+ * @return int Number
+ */
+int atoi(const char* str, int base)
+{
+    int value = 0;
+    int sign = 1;
+    if (*str == '+' || *str == '-')
+    {
+        if (*str == '-')
+            sign = -1;
+        str++;
+    }
+    while (1)
+    {
+        int digit;
+        if (is_digit(*str))
+        {
+            digit = (int)(*str - '0');
+        }
+        else if (is_alpha(*str))
+        {
+            digit = to_upper(*str) - 'A' + 10;
+        }
+        else
+        {
+            break;
+        }
+        value *= base;
+        value += digit;
+        str++;
+    }
+    return value * sign;
+}
+
+/**
  * @brief Kernel vsprintf
  * params: %% %c %s %p %l(mod) %d %i %x
  * @param buf Buffer
