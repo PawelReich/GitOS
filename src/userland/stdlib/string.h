@@ -26,6 +26,9 @@ int atoi(const char* str, int base);
 char* sprintf(char* buf, const char* fmt, ...);
 char* vsprintf(char* buf, const char* fmt, va_list args);
 
+size_t scanf(const char* buf, const char* fmt, ...);
+size_t vscanf(const char* buf, const char* fmt, va_list args);
+
 int is_digit(char c);
 int is_alpha(char c);
 

@@ -513,6 +513,72 @@ char* vsprintf(char* buf, const char* fmt, va_list args)
     return org_buf;
 }
 
+size_t scanf(const char* buf, const char* fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+    return vscanf(buf, fmt, args);
+}
+
+/**
+ * @brief vscanf
+ * params: %% %c %s %p %l(mod) %d %i %x
+ * @param buf Input buffer
+ * @param fmt Expected format
+ * @param va_list arguments
+ * @return size_t Parsed characters
+ */
+size_t vscanf(const char* buf, const char* fmt, va_list args)
+{
+    const char* orig_buf = buf;
+    // char internal_buffer[512];
+
+    while (*fmt != 0)
+    {
+        if (*fmt != '%')
+        {
+            if (*fmt != *buf)
+            {
+                break;
+            }
+            buf++;
+            fmt++;
+            continue;
+        }
+        fmt++;
+        switch (*fmt)
+        {
+            case 'd':
+            {
+                ;
+                int* ptr = va_arg(args, int*);
+                *ptr = atoi(buf, 10);
+                while (is_digit(*buf) && *buf != 0)
+                {
+                    buf++;
+                }
+                break;
+            }
+            case 'x':
+            {
+                ;
+                int* ptr = va_arg(args, int*);
+                *ptr = atoi(buf, 16);
+                while ((is_alpha(*buf) || is_digit(*buf)) && *buf != 0)
+                {
+                    buf++;
+                }
+                break;
+            }
+            default:
+                break;
+        }
+        fmt++;
+    }
+    va_end(args);
+    return (size_t)buf - (size_t)orig_buf;
+}
+
 /**
  * @brief Kernel sprintf
  * params: %% %c %s %p %l(mod) %d %i %x

@@ -29,3 +29,7 @@ def test_testsuite_starts(qemu):
 
 def test_printf(qemu):
     qemu.expect("test_printf: 12345 deadbeef")
+
+def test_simple_scanf(qemu):
+    qemu.expect("test_simple_scanf: 12345, abba")
+    qemu.expect("test_multiple_scanf: 12345 cafebabe 67890 abba")
