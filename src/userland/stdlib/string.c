@@ -446,6 +446,14 @@ char* vsprintf(char* buf, const char* fmt, va_list args)
                         fmt++;
                         break;
 
+                    case 'u':
+                        memset(internal_buffer, 0, 512);
+                        itoa(va_arg(args, unsigned int), internal_buffer, 10);
+                        sz = strlen(internal_buffer);
+                        memcpy(buf, internal_buffer, sz);
+                        buf += sz;
+                        fmt++;
+                        break;
                     case 'x':
                         memset(internal_buffer, 0, 512);
                         uitoa(va_arg(args, unsigned long), internal_buffer, 16);
