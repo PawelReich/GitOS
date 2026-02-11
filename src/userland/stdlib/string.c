@@ -505,6 +505,20 @@ int to_numeric_digit(char c)
     return c - 48;
 }
 
+char to_upper(char c)
+{
+    if (c >= 'A' && c <= 'Z')
+    {
+        return c;
+    }
+
+    if (c >= 'a' && c <= 'z')
+    {
+        return c + ('a' - 'A');
+    }
+    return c;
+}
+
 /**
  * @brief Sets first bytes of memory pointed to specified value
  *

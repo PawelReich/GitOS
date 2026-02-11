@@ -27,6 +27,7 @@ char* vsprintf(char* buf, const char* fmt, va_list args);
 
 int is_digit(char c);
 int to_numeric_digit(char c);
+char to_upper(char c);
 
 void* memset(void* ptr, int c, size_t size);
 void* memcpy(void* dstptr, const void* srcptr, size_t size);
